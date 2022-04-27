@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+  }
+  
+  .container {
+  /*   display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 7px; */
+    width: 600px;
+    height: 600px;
+    margin: auto;
+  }
+  
+  .box {
+    border: gray 2px solid;
+  /*   display: flex;
+    align-items: center;
+    justify-content: center; */
+    color: white;
+    height: 30px;
+    width: 30px;
+    font-size: 4em;
+    padding: 0;
+    font-weight: 200;
+    font-family: sans-serif;
+  }
+  
+  
