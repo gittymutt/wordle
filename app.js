@@ -21,12 +21,17 @@ function checkWord() {
   // Match letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
-    Array.from(board.rows)[col].cells[row].style.backgroundColor = "lightgray"
-    let boardVal = Array.from(board.rows)[col].cells[row].innerText
+    // Array.from(board.rows)[col].cells[row].style.backgroundColor = "lightgray"
+    getSquare(row, col).style.backgroundColor = "lightgray"
+    // let boardVal = Array.from(board.rows)[col].cells[row].innerText
+    let boardVal = getSquare(row, col).innerText
+
     let letterVal = words[col][row]
     
     if (tempSecretWord[row] === letterVal) {
-      Array.from(board.rows)[col].cells[row].style.backgroundColor = "green"
+      // Array.from(board.rows)[col].cells[row].style.backgroundColor = "green"
+      getSquare(row, col).style.backgroundColor = "green"
+
       tempSecretWord[row] = null
       tempWord[row] = null
       numRight++
@@ -42,11 +47,15 @@ function checkWord() {
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
-        Array.from(board.rows)[col].cells[row].style.backgroundColor = "yellow"
+        // Array.from(board.rows)[col].cells[row].style.backgroundColor = "yellow"
+        getSquare(row, col).style.backgroundColor = "yellow"
+
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
-      let boardVal = Array.from(board.rows)[col].cells[row].innerText
+      // let boardVal = Array.from(board.rows)[col].cells[row].innerText
+      let boardVal = getSquare(row, col).innerText
+
     }
   }
 }
@@ -64,7 +73,9 @@ el.onkeydown = (e) => {
   // backspace
   if (e.which === 8) {
     if (row > 0)  {row--}
-    let currentSpace = Array.from(board.rows)[col].cells[row]
+    // let currentSpace = Array.from(board.rows)[col].cells[row]
+    let currentSpace =  getSquare(row, col)
+
     currentSpace.innerText = ""
     return 0
   }
@@ -80,7 +91,7 @@ el.onkeydown = (e) => {
 
 function update(words) {
   if (row === rowLen) return 0
-  Array.from(board.rows)[col].cells[row].innerText = words[col][row]
+  getSquare(row, col).innerText = words[col][row]
 }
 
 function makeKeyboard() {
@@ -91,3 +102,7 @@ function makeKeyboard() {
   
 }
 
+function getSquare(x, y) {
+  let indexNum = y*rowLen + x
+  return Array.from(board.children)[indexNum]
+}
