@@ -7,9 +7,8 @@ let colLen = 6
 let board = document.querySelector(".container")
 let secretWord = "chair"
 
-let keyboard = document.querySelector("body")
-// keyboard.onLoad = function() {alert("loaded")}
-keyboard.onload = () => { makeKeyboard() }
+let keyboard = document.querySelector(".keyboard")
+document.querySelector("body").onload = () => { makeKeyboard() }
 
 function checkWord() {
   let tempWord = []
@@ -85,14 +84,24 @@ function update(words) {
   getSquare(row, col).innerText = words[col][row]
 }
 
-function makeKeyboard() {
-  console.log("making keyboard")
-  let key = document.createElement("button")
-  key.innerText = "q"
-  keyboard.appendChild(key)
-}
-
 function getSquare(x, y) {
   let indexNum = y*rowLen + x
   return Array.from(board.children)[indexNum]
 }
+
+function makeKeyboard() {
+  console.log("making keyboard")
+  for (let i=0; i < keys.length; ++i) {
+    let key = document.createElement("button")
+    key.innerText = keys[i]
+    key.onclick = () => {
+      console.log("clicked key:" + keys[i])
+    }
+    keyboard.appendChild(key)
+
+  }
+}
+
+let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
+            "a","s","d","f","g","h","j","k","l",
+            "ENTER","Z","X","C","V","B","N","M", "BACK"]
