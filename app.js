@@ -1,9 +1,11 @@
-let el = document.getElementsByTagName("body")[0]
-let words = Array.from(Array(6), () => new Array(5))
-let row = 0
-let col = 0
+
 let rowLen = 5
 let colLen = 6
+let el = document.getElementsByTagName("body")[0]
+let words = Array.from(Array(colLen), () => new Array(rowLen))
+let row = 0
+let col = 0
+
 let board = document.querySelector(".container")
 let secretWord = "chair"
 
