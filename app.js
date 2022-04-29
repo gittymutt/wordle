@@ -7,7 +7,7 @@ let row = 0
 let col = 0
 
 let board = document.querySelector(".container")
-let secretWord = "chair"
+let secretWord = "learn"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { makeKeyboard() }
