@@ -13,15 +13,16 @@ document.querySelector("body").onload = () => { makeKeyboard() }
 function checkWord() {
   let tempWord = []
   let tempSecretWord = Array.from(secretWord)
+  tempSecretWord = tempSecretWord.map((letter) => letter.toUpperCase())
   for (let i = 0;i<rowLen;++i) {
-    tempWord.push(words[col][i] )
+    tempWord.push(words[col][i].toUpperCase() )
   }
   
   // Match letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
     getSquare(row, col).style.backgroundColor = "lightgray"
-    let boardVal = getSquare(row, col).innerText
+    // let boardVal = getSquare(row, col).innerText
 
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
@@ -87,7 +88,7 @@ function backSpacePressed() {
 }
 
 function letterPressed(letterChar) {
-  words[col][row] = letterChar
+  words[col][row] = letterChar.toUpperCase()
   update(words) 
   if (row < rowLen) { row++ } 
 }
@@ -103,7 +104,7 @@ function getSquare(x, y) {
 }
 
 function makeKeyboard() {
-  console.log("making keyboard")
+  keys = keys.map((key) => key.toUpperCase())
   for (let i=0; i < keys.length; ++i) {
     let key = document.createElement("button")
     key.innerText = keys[i]
