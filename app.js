@@ -14,7 +14,7 @@ function checkWord() {
   let tempWord = []
   let tempSecretWord = Array.from(secretWord)
   for (let i = 0;i<rowLen;++i) {
-    tempWord.push(words[col][i])
+    tempWord.push(words[col][i] )
   }
   
   // Match letter and position
@@ -24,8 +24,7 @@ function checkWord() {
     let boardVal = getSquare(row, col).innerText
 
     let letterVal = words[col][row]
-    
-    if (tempSecretWord[row] === letterVal) {
+    if ( tempSecretWord[row] === letterVal) {
       getSquare(row, col).style.backgroundColor = "green"
 
       tempSecretWord[row] = null
@@ -48,39 +47,49 @@ function checkWord() {
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
-      let boardVal = getSquare(row, col).innerText
+      let boardVal = getSquare(row, col).innerText.toUpperCase()
     }
   }
 }
 
 el.onkeydown = (e) => {
   // enter
-  if (e.which === 13 && row === 5) {
-    row = 0
-    checkWord()
-    col++
-    if (col >= colLen) {document.write("You lose.")}
+  if (e.which === 13 && row === rowLen) {
+    enterPressed()
     return 0
   }
   
   // backspace
   if (e.which === 8) {
-    if (row > 0)  {row--}
-    let currentSpace =  getSquare(row, col)
-    currentSpace.innerText = ""
+    backSpacePressed()
     return 0
   }
   
   // letters only
   if (e.which >=65 && e.which <= 90) {
-    words[col][row] = e.key
-    update(words) 
-    if (row < rowLen) { row++ } 
+    letterPressed(e.key)
   }
 }
 
 function enterPressed() {
+  if (row === rowLen) {
+    row = 0
+    checkWord()
+    col++
+    if (col >= colLen) {document.write("You lose.")}
+  }
+}
 
+function backSpacePressed() {
+  if (row > 0)  {row--}
+  let currentSpace =  getSquare(row, col)
+  currentSpace.innerText = ""
+}
+
+function letterPressed(letterChar) {
+  words[col][row] = letterChar
+  update(words) 
+  if (row < rowLen) { row++ } 
 }
 
 function update(words) {
@@ -98,14 +107,26 @@ function makeKeyboard() {
   for (let i=0; i < keys.length; ++i) {
     let key = document.createElement("button")
     key.innerText = keys[i]
-    key.onclick = () => {
-      console.log("clicked key:" + keys[i], " ")
+    if (keys[i] != "ENTER" && keys[i] != "BACK") { // make an isAlpha function
+      key.onclick = () => {
+        console.log("clicked key:" + keys[i], " ")
+        letterPressed(keys[i])
+      }
+    }
+    if (keys[i] === "ENTER") {
+      key.onclick = () => {
+        enterPressed()
+      }
+    }
+    if (keys[i] === "BACK") {
+      key.onclick = () => {
+        backSpacePressed()
+      }
     }
     keyboard.appendChild(key)
-
   }
 }
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
-            "ENTER","Z","X","C","V","B","N","M", "BACK"]
+            "ENTER","z","x","c","v","b","n","m", "BACK"]
