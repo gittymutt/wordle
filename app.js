@@ -79,6 +79,10 @@ el.onkeydown = (e) => {
   }
 }
 
+function enterPressed() {
+
+}
+
 function update(words) {
   if (row === rowLen) return 0
   getSquare(row, col).innerText = words[col][row]
@@ -95,7 +99,7 @@ function makeKeyboard() {
     let key = document.createElement("button")
     key.innerText = keys[i]
     key.onclick = () => {
-      console.log("clicked key:" + keys[i])
+      console.log("clicked key:" + keys[i], " ")
     }
     keyboard.appendChild(key)
 
