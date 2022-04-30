@@ -5,6 +5,8 @@ let el = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(colLen), () => new Array(rowLen))
 let row = 0
 let col = 0
+const backButtonLabel = "<-"
+const enterButtonLabel = "ENTER"
 
 let board = document.querySelector(".container")
 let secretWord = "learn"
@@ -110,18 +112,21 @@ function makeKeyboard() {
   for (let i=0; i < keys.length; ++i) {
     let key = document.createElement("button")
     key.innerText = keys[i]
-    if (keys[i] != "ENTER" && keys[i] != "BACK") { // make an isAlpha function
+    
+    if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
       key.onclick = () => {
         console.log("clicked key:" + keys[i], " ")
         letterPressed(keys[i])
       }
     }
-    if (keys[i] === "ENTER") {
+    if (keys[i] === enterButtonLabel) {
+      key.style.gridColumn = "1 / 3"
       key.onclick = () => {
         enterPressed()
       }
     }
-    if (keys[i] === "BACK") {
+    if (keys[i] === backButtonLabel) {
+      // key.style.gridColumn = "8/10"
       key.onclick = () => {
         backSpacePressed()
       }
@@ -132,4 +137,4 @@ function makeKeyboard() {
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
-            "ENTER","z","x","c","v","b","n","m", "BACK"]
+            enterButtonLabel,"z","x","c","v","b","n","m", backButtonLabel]
