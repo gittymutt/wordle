@@ -35,7 +35,8 @@ function checkWord() {
       let square = getSquare(row, col)
       square.style.backgroundColor = green
       square.style.borderColor = green
-
+      let key = getKey(letterVal)
+      key.style.backgroundColor = green
       tempSecretWord[row] = null
       tempWord[row] = null
       numRight++
@@ -55,12 +56,26 @@ function checkWord() {
         square.style.backgroundColor = yellow
         square.style.borderColor = yellow
 
+        let key = getKey(tempSecretWord[matchingSecretLetter])
+        key.style.backgroundColor = yellow
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
       let boardVal = getSquare(row, col).innerText.toUpperCase()
     }
   }
+  console.log(tempWord)
+  tempWord = tempWord.filter((letter) => letter !== null)
+  console.log(tempWord)
+  for (const letter of tempWord) {
+    let key = getKey(letter)
+    if (key.style.backgroundColor !== green ||
+        key.style.backgroundColor !== yellow) {
+        key.style.backgroundColor = "darkgray"
+    }
+  }
+  
+
 }
 
 el.onkeydown = (e) => {
@@ -111,6 +126,13 @@ function update(words) {
 function getSquare(x, y) {
   let indexNum = y*rowLen + x
   return Array.from(board.children)[indexNum]
+}
+
+
+// param: letter A-Z 
+function getKey(letter) {
+  console.log(`searching for .key-${letter}`)
+  return document.querySelector(`.key-${letter}`)
 }
 
 function makeKeyboard() {
