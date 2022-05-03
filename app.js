@@ -7,6 +7,8 @@ let row = 0
 let col = 0
 const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
+const yellow = "#f1ba14"
+const green = "green"
 
 let board = document.querySelector(".board")
 let secretWord = "learn"
@@ -30,7 +32,9 @@ function checkWord() {
 
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
-      getSquare(row, col).style.backgroundColor = "green"
+      let square = getSquare(row, col)
+      square.style.backgroundColor = green
+      square.style.borderColor = green
 
       tempSecretWord[row] = null
       tempWord[row] = null
@@ -47,8 +51,10 @@ function checkWord() {
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
-        getSquare(row, col).style.backgroundColor = "yellow"
-
+        let square = getSquare(row, col)
+        square.style.backgroundColor = yellow
+        square.style.borderColor = yellow
+        
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }

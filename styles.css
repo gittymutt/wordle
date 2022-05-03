@@ -7,10 +7,23 @@ body {
   }
   
   .container {
-    max-width: 400px;
+    max-width: 600px;
     margin: auto;
   }
 
+  header {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: darkgray 1px solid;
+    margin-bottom: 15px;
+    
+  }
+  header h1 {
+    font-size: 1em;
+    font-weight: 600;
+  }
   .board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -18,6 +31,9 @@ body {
     grid-gap: 5px;
     min-width: 320px;
     width: 100%;
+    
+    max-width: 500px;
+    margin: auto auto;
     margin-bottom: 40px;
   }
   
@@ -29,7 +45,7 @@ body {
     color: white;
     min-width: 56px;
     aspect-ratio: 1 / 1;
-    font-size: 40px; 
+    font-size: 3em; 
     padding: 0;
     margin: 0;
     font-weight: 200;
@@ -41,11 +57,12 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-gap: 5px;
-    min-width: 360px;
-    max-width: 500px;
-    height: 150px;
-    margin: auto;
+    min-width: 320px;
+    max-width: 600px;
+    min-height: 200px;
+    /* margin: auto; */
     margin-top: 20px;
+    margin: 0 auto;
   }
   
   
