@@ -11,7 +11,7 @@ const yellow = "#f1ba14"
 const green = "green"
 
 let board = document.querySelector(".board")
-let secretWord = "learn"
+let secretWord = "study"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { makeKeyboard() }
@@ -54,7 +54,7 @@ function checkWord() {
         let square = getSquare(row, col)
         square.style.backgroundColor = yellow
         square.style.borderColor = yellow
-        
+
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
