@@ -31,7 +31,6 @@ function checkWord() {
   for (let row = 0; row < rowLen;++row) {
     getSquare(row, col).style.backgroundColor = DARK_GRAY
     getSquare(row, col).style.border = DARK_GRAY
-    // let boardVal = getSquare(row, col).innerText
 
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
