@@ -13,7 +13,7 @@ const LIGHT_GRAY = "#aaa3a3"
 const DARK_GRAY = "#534c4c"
 
 let board = document.querySelector(".board")
-let secretWord = "study"
+let secretWord = "buddy"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { makeKeyboard() }
@@ -59,7 +59,7 @@ function checkWord() {
         square.style.borderColor = YELLOW
 
         let key = getKey(tempSecretWord[matchingSecretLetter])
-        key.style.backgroundColor = YELLOW
+        if( key.style.backgroundColor !== GREEN) key.style.backgroundColor = YELLOW
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
@@ -71,10 +71,10 @@ function checkWord() {
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
     let key = getKey(letter)
-    if (key.style.backgroundColor !== GREEN &
-        key.style.backgroundColor !== YELLOW) {
-        key.style.backgroundColor = LIGHT_GRAY
-    }
+    if (key.style.backgroundColor === GREEN) continue
+    if (key.style.backgroundColor === YELLOW) continue
+    key.style.backgroundColor = LIGHT_GRAY
+    
   }
 }
 
