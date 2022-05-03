@@ -9,6 +9,9 @@ const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
 const YELLOW = "#f1ba14"
 const GREEN = "green"
+const LIGHT_GRAY = "#aaa3a3"
+const DARK_GRAY = "#534c4c"
+
 let board = document.querySelector(".board")
 let secretWord = "study"
 
@@ -26,7 +29,8 @@ function checkWord() {
   // Match letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
-    getSquare(row, col).style.backgroundColor = "lightgray"
+    getSquare(row, col).style.backgroundColor = DARK_GRAY
+    getSquare(row, col).style.border = DARK_GRAY
     // let boardVal = getSquare(row, col).innerText
 
     let letterVal = words[col][row]
@@ -68,7 +72,7 @@ function checkWord() {
     let key = getKey(letter)
     if (key.style.backgroundColor !== GREEN &
         key.style.backgroundColor !== YELLOW) {
-        key.style.backgroundColor = "darkgray"
+        key.style.backgroundColor = LIGHT_GRAY
     }
   }
   
