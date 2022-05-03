@@ -5,10 +5,10 @@ let el = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(colLen), () => new Array(rowLen))
 let row = 0
 let col = 0
-const backButtonLabel = "<-"
+const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
 
-let board = document.querySelector(".container")
+let board = document.querySelector(".board")
 let secretWord = "learn"
 
 let keyboard = document.querySelector(".keyboard")
@@ -111,6 +111,7 @@ function makeKeyboard() {
   keys = keys.map((key) => key.toUpperCase())
   for (let i=0; i < keys.length; ++i) {
     let key = document.createElement("button")
+    key.className = "keys"
     key.innerText = keys[i]
     
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
