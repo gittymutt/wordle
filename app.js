@@ -45,7 +45,7 @@ function checkWord() {
     } 
   }
   if (numRight === rowLen) {
-    document.write("<h1>You win!!!</h1>")
+    document.querySelector(".you-win").style.visibility = "visible"
   }
   
   // Matches letter but not position
@@ -102,7 +102,9 @@ function enterPressed() {
     row = 0
     checkWord()
     col++
-    if (col >= colLen) {document.write("You lose.")}
+    if (col >= colLen) {
+      document.querySelector(".you-lose").style.visibility = "visible"
+    }
   }
 }
 

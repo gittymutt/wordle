@@ -7,6 +7,7 @@ body {
   }
   
   .container {
+    position: relative;
     max-width: 600px;
     margin: auto;
   }
@@ -63,6 +64,27 @@ body {
     /* margin: auto; */
     margin-top: 20px;
     margin: 0 auto;
+  }
+
+  .you-lose, .you-win {
+    visibility: hidden;
+    
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, 50%);
+    padding: 10%;
+    border-radius: 5px;
+  }
+
+  .you-win {
+    background-color: rgb(24, 187, 43);
+    font-size: 2em;
+    color: rgb(9, 8, 8);
+    padding: 0px 30px;
+  }
+
+  .you-lose {
+    background-color: white;
   }
   
   
