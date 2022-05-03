@@ -117,12 +117,14 @@ function makeKeyboard() {
   keys = keys.map((key) => key.toUpperCase())
   for (let i=0; i < keys.length; ++i) {
     let key = document.createElement("button")
-    key.className = "keys"
+    key.className = `key-${keys[i]}`
     key.innerText = keys[i]
+    key.style.border = "none"
+    key.style.borderRadius = "7px"
     
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
       key.onclick = () => {
-        console.log("clicked key:" + keys[i], " ")
+        // console.log("clicked key:" + keys[i], " ")
         letterPressed(keys[i])
       }
     }
