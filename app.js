@@ -75,8 +75,6 @@ function checkWord() {
         key.style.backgroundColor = LIGHT_GRAY
     }
   }
-  
-
 }
 
 el.onkeydown = (e) => {
@@ -147,7 +145,6 @@ function makeKeyboard() {
     
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
       key.onclick = () => {
-        // console.log("clicked key:" + keys[i], " ")
         letterPressed(keys[i])
       }
     }
@@ -158,7 +155,6 @@ function makeKeyboard() {
       }
     }
     if (keys[i] === backButtonLabel) {
-      // key.style.gridColumn = "8/10"
       key.onclick = () => {
         backSpacePressed()
       }
