@@ -26,7 +26,7 @@ function checkWord() {
     tempWord.push(words[col][i].toUpperCase() )
   }
   
-  // Match letter and position
+  // Matches letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
     getSquare(row, col).style.backgroundColor = DARK_GRAY
@@ -66,6 +66,8 @@ function checkWord() {
       let boardVal = getSquare(row, col).innerText.toUpperCase()
     }
   }
+
+  // Unmatching letters
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
     let key = getKey(letter)
