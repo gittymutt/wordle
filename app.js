@@ -7,9 +7,8 @@ let row = 0
 let col = 0
 const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
-const yellow = "#f1ba14"
-const green = "green"
-
+const YELLOW = "#f1ba14"
+const GREEN = "green"
 let board = document.querySelector(".board")
 let secretWord = "study"
 
@@ -33,10 +32,10 @@ function checkWord() {
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
       let square = getSquare(row, col)
-      square.style.backgroundColor = green
-      square.style.borderColor = green
+      square.style.backgroundColor = GREEN
+      square.style.borderColor = GREEN
       let key = getKey(letterVal)
-      key.style.backgroundColor = green
+      key.style.backgroundColor = GREEN
       tempSecretWord[row] = null
       tempWord[row] = null
       numRight++
@@ -53,24 +52,22 @@ function checkWord() {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
         let square = getSquare(row, col)
-        square.style.backgroundColor = yellow
-        square.style.borderColor = yellow
+        square.style.backgroundColor = YELLOW
+        square.style.borderColor = YELLOW
 
         let key = getKey(tempSecretWord[matchingSecretLetter])
-        key.style.backgroundColor = yellow
+        key.style.backgroundColor = YELLOW
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
       let boardVal = getSquare(row, col).innerText.toUpperCase()
     }
   }
-  console.log(tempWord)
   tempWord = tempWord.filter((letter) => letter !== null)
-  console.log(tempWord)
   for (const letter of tempWord) {
     let key = getKey(letter)
-    if (key.style.backgroundColor !== green ||
-        key.style.backgroundColor !== yellow) {
+    if (key.style.backgroundColor !== GREEN &
+        key.style.backgroundColor !== YELLOW) {
         key.style.backgroundColor = "darkgray"
     }
   }
