@@ -7,10 +7,18 @@ let row = 0
 let col = 0
 const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
-const YELLOW = "#f1ba14"
-const GREEN = "green"
-const LIGHT_GRAY = "#aaa3a3"
-const DARK_GRAY = "#534c4c"
+// const YELLOW = "#f1ba14"
+// const GREEN = "green"
+// const LIGHT_GRAY = "#aaa3a3"
+// const DARK_GRAY = "#534c4c"
+
+const YELLOW_CLASS = "yellow"
+const GREEN_CLASS = "green"
+const DARK_GRAY_CLASS = "dark-gray"
+const LIGHT_GRAY_CLASS = "light-gray"
+
+
+
 
 let board = document.querySelector(".board")
 let secretWord = "buddy"
@@ -29,16 +37,22 @@ function checkWord() {
   // Matches letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
-    getSquare(row, col).style.backgroundColor = DARK_GRAY
-    getSquare(row, col).style.border = DARK_GRAY
+    // getSquare(row, col).style.backgroundColor = DARK_GRAY
+    // getSquare(row, col).style.border = DARK_GRAY
+    getSquare(row, col).classList.add(DARK_GRAY_CLASS)
 
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
       let square = getSquare(row, col)
-      square.style.backgroundColor = GREEN
-      square.style.borderColor = GREEN
+      // square.style.backgroundColor = GREEN
+      // square.style.borderColor = GREEN
+      square.classList.remove(DARK_GRAY_CLASS)
+      square.classList.remove(YELLOW_CLASS)
+      square.classList.add(GREEN_CLASS)
       let key = getKey(letterVal)
-      key.style.backgroundColor = GREEN
+      // key.style.backgroundColor = GREEN
+      key.classList.remove(YELLOW_CLASS)
+      key.classList.add(GREEN_CLASS)
       tempSecretWord[row] = null
       tempWord[row] = null
       numRight++
@@ -55,11 +69,12 @@ function checkWord() {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
         let square = getSquare(row, col)
-        square.style.backgroundColor = YELLOW
-        square.style.borderColor = YELLOW
-
+        // square.style.backgroundColor = YELLOW
+        // square.style.borderColor = YELLOW
+        square.classList.remove(DARK_GRAY_CLASS)
+        square.classList.add(YELLOW_CLASS)
         let key = getKey(tempSecretWord[matchingSecretLetter])
-        if( key.style.backgroundColor !== GREEN) key.style.backgroundColor = YELLOW
+        if( !key.classList.contains(GREEN_CLASS)) { key.classList.add(YELLOW_CLASS) }
         tempSecretWord[matchingSecretLetter] = null
         tempWord[row] = null
       }
@@ -71,9 +86,12 @@ function checkWord() {
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
     let key = getKey(letter)
-    if (key.style.backgroundColor === GREEN) continue
-    if (key.style.backgroundColor === YELLOW) continue
-    key.style.backgroundColor = LIGHT_GRAY
+    console.log(letter + " is " + key.style.backgroundColor)
+    if (key.classList.contains(GREEN_CLASS)) continue 
+    if (key.classList.contains(YELLOW_CLASS)) continue 
+
+    // if (key.style.backgroundColor === YELLOW) {console.log(key + " yellow already. Skipping")}
+    key.classList.add(LIGHT_GRAY_CLASS)
     
   }
 }
@@ -133,7 +151,7 @@ function getSquare(x, y) {
 
 // param: letter A-Z 
 function getKey(letter) {
-  console.log(`searching for .key-${letter}`)
+  // console.log(`searching for .key-${letter}`)
   return document.querySelector(`.key-${letter}`)
 }
 

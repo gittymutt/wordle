@@ -19,8 +19,8 @@ body {
     align-items: center;
     border-bottom: darkgray 1px solid;
     margin-bottom: 15px;
-    
   }
+
   header h1 {
     font-size: 1em;
     font-weight: 600;
@@ -66,9 +66,29 @@ body {
     margin: 0 auto;
   }
 
+  .green {
+    background-color: green;
+    border-color: green;
+  }
+
+  .yellow {
+    background-color: #f1ba14;
+    border-color: #f1ba14;
+  }
+
+  .light-gray {
+    background-color: #aaa3a3;
+    border-color: #aaa3a3;
+
+  }
+
+  .dark-gray {
+    background-color: #534c4c;
+    border-color: #534c4c;
+  }
+
   .you-lose, .you-win {
     visibility: hidden;
-    
     position: absolute;
     right: 50%;
     transform: translate(50%, 50%);
