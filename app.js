@@ -71,7 +71,6 @@ function checkWord() {
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
     let key = getKey(letter)
-    console.log(letter + " is " + key.style.backgroundColor)
     if (key.classList.contains(GREEN_CLASS)) continue 
     if (key.classList.contains(YELLOW_CLASS)) continue 
     key.classList.add(LIGHT_GRAY_CLASS) 
@@ -117,7 +116,7 @@ function backSpacePressed() {
 function letterPressed(letterChar) {
   words[col][row] = letterChar.toUpperCase()
   update(words) 
-  if (row < rowLen) { row++ } 
+  if (row < rowLen) { row++ }
 }
 
 function update(words) {
