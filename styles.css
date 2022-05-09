@@ -90,13 +90,13 @@ body {
     backface-visibility: hidden;
     /* -moz-backface-visibility: hidden; */
     text-align: center;
-    border: solid darkgray 2px;
+    border: solid rgb(72, 70, 70) 2px;
 
     box-sizing: border-box;
   }
 
   .box-front-side {
-    background-color: red;
+    /* background-color: red; */
   }
 
   .box-back-side {
