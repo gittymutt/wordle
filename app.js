@@ -16,7 +16,10 @@ let board = document.querySelector(".board")
 let secretWord = "buddy"
 
 let keyboard = document.querySelector(".keyboard")
-document.querySelector("body").onload = () => { makeKeyboard() }
+document.querySelector("body").onload = () => { 
+  makeSquares(rowLen, colLen) //change col and row around
+  makeKeyboard() 
+}
 
 function checkWord() {
   let tempWord = []
@@ -161,6 +164,26 @@ function makeKeyboard() {
       }
     }
     keyboard.appendChild(key)
+  }
+}
+
+function makeSquares(rowLen, colLen) {
+  let board = document.querySelector(".board")
+  let numberOfSquares = rowLen * colLen
+  for (let i=0;i<numberOfSquares;++i) {
+    let boxContainer = document.createElement('div')
+    boxContainer.classList.add('box-container')
+    let innerBoxContainer = document.createElement('div')
+    innerBoxContainer.classList.add('inner-box-container')
+    let boxFrontSide = document.createElement('div')
+    boxFrontSide.classList.add('box-front-side')
+    let boxBackSide = document.createElement('div')
+    boxBackSide.classList.add('box-back-side')
+
+    innerBoxContainer.appendChild(boxFrontSide)
+    innerBoxContainer.appendChild(boxBackSide)
+    boxContainer.appendChild(innerBoxContainer)
+    board.appendChild(boxContainer)
   }
 }
 
