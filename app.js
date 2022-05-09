@@ -112,8 +112,10 @@ function enterPressed() {
 
 function backSpacePressed() {
   if (row > 0)  {row--}
-  let currentSpace =  getSquare(row, col)
-  currentSpace.innerText = ""
+  // let currentSpace =  getSquare(row, col)
+  words[col][row] = ""
+  update(words)
+  // currentSpace.innerText = ""
 }
 
 function letterPressed(letterChar) {
@@ -129,9 +131,18 @@ function update(words) {
 
 function getSquare(x, y) {
   let indexNum = y*rowLen + x
-  return Array.from(board.children)[indexNum]
+  return Array.from(board.children)[indexNum].firstChild.firstChild
 }
 
+function getSquareFront(x, y) {
+  let indexNum = y*rowLen + x
+  return Array.from(board.children)[indexNum].firstChild.firstChild
+}
+
+function getSquareBack(x, y) {
+  let indexNum = y*rowLen + x
+  return Array.from(board.children)[indexNum].firstChild.lastChild
+}
 
 // param: letter A-Z 
 function getKey(letter) {

@@ -89,7 +89,7 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
+    /* -moz-backface-visibility: hidden; */
     text-align: center;
     /* box-sizing: border-box; */
   }
