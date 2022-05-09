@@ -32,14 +32,16 @@ function checkWord() {
   // Matches letter and position
   let numRight = 0
   for (let row = 0; row < rowLen;++row) {
-    getSquare(row, col).classList.add(DARK_GRAY_CLASS)
+    getSquareBack(row, col).classList.add(DARK_GRAY_CLASS)
     let letterVal = words[col][row]
 
     if ( tempSecretWord[row] === letterVal) {
-      let square = getSquare(row, col)
-      square.classList.remove(DARK_GRAY_CLASS)
-      square.classList.remove(YELLOW_CLASS)
-      square.classList.add(GREEN_CLASS)
+      // let square = getSquare(row, col)
+      let squareBack = getSquareBack(row, col)
+
+      squareBack.classList.remove(DARK_GRAY_CLASS)
+      squareBack.classList.remove(YELLOW_CLASS)
+      squareBack.classList.add(GREEN_CLASS)
       let key = getKey(letterVal)
       key.classList.remove(YELLOW_CLASS)
       key.classList.add(GREEN_CLASS)
@@ -58,9 +60,9 @@ function checkWord() {
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
-        let square = getSquare(row, col)
-        square.classList.remove(DARK_GRAY_CLASS)
-        square.classList.add(YELLOW_CLASS)
+        let squareBack = getSquareBack(row, col)
+        squareBack.classList.remove(DARK_GRAY_CLASS)
+        squareBack.classList.add(YELLOW_CLASS)
         let key = getKey(tempSecretWord[matchingSecretLetter])
         if( !key.classList.contains(GREEN_CLASS)) { key.classList.add(YELLOW_CLASS) }
         tempSecretWord[matchingSecretLetter] = null
@@ -127,7 +129,7 @@ function letterPressed(letterChar) {
 function update(words) {
   if (row === rowLen) return 0
   getSquareFront(row, col).innerText = words[col][row]
-  getSquareBackj(row, col).innerText = words[col][row]
+  getSquareBack(row, col).innerText = words[col][row]
 
 }
 
