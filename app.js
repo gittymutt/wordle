@@ -189,10 +189,14 @@ function makeKeyboard() {
 // row is correct, colLen is really rowLen
 function flipLetters(rowToFlip) {
   console.log(`row:${rowToFlip} column len: ${rowLen}`)
+  let timeDelay = 0
   for (let col = 0;col < rowLen;++col) {
-    // let square = getSquare(row, col)
+    
     console.log(getSquare(col, rowToFlip).firstChild.firstChild.innerText)
-    getSquare(col, rowToFlip).firstChild.classList.add('flip')
+    setTimeout(() => {
+      getSquare(col, rowToFlip).firstChild.classList.add('flip') 
+    }, timeDelay)
+    timeDelay += 400
   }
 }
 

@@ -64,7 +64,7 @@ body {
     font-weight: 200;
     font-family: sans-serif;
     position: relative;
-    perspective: 1000;
+    /* perspective: 1000; */
   }
 
  .box-container:hover .box-inner-container {
