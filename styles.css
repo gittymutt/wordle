@@ -72,7 +72,6 @@ body {
   }
 
   .inner-box-container {
-        border: solid darkgray 2px;
     box-sizing: border-box;
 
     position: absolute;
@@ -91,7 +90,9 @@ body {
     backface-visibility: hidden;
     /* -moz-backface-visibility: hidden; */
     text-align: center;
-    /* box-sizing: border-box; */
+    border: solid darkgray 2px;
+
+    box-sizing: border-box;
   }
 
   .box-front-side {
