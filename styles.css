@@ -101,6 +101,10 @@ body {
     -webkit-transform: rotateX(180deg);
   }
 
+  .flip {
+    transform: rotateX(180deg);
+  }
+
   .keyboard {
     display: grid;
     grid-template-columns: repeat(10, 1fr);

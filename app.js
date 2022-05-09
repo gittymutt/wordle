@@ -80,6 +80,10 @@ function checkWord() {
     if (key.classList.contains(YELLOW_CLASS)) continue 
     key.classList.add(LIGHT_GRAY_CLASS) 
   }
+
+  // Flip Letters
+  console.log("row outside flipLetters()" + row)
+  flipLetters(col)
 }
 
 el.onkeydown = (e) => {
@@ -135,7 +139,7 @@ function update(words) {
 
 function getSquare(x, y) {
   let indexNum = y*rowLen + x
-  return Array.from(board.children)[indexNum].firstChild.firstChild
+  return Array.from(board.children)[indexNum]
 }
 
 function getSquareFront(x, y) {
@@ -179,6 +183,16 @@ function makeKeyboard() {
       }
     }
     keyboard.appendChild(key)
+  }
+}
+
+// row is correct, colLen is really rowLen
+function flipLetters(rowToFlip) {
+  console.log(`row:${rowToFlip} column len: ${rowLen}`)
+  for (let col = 0;col < rowLen;++col) {
+    // let square = getSquare(row, col)
+    console.log(getSquare(col, rowToFlip).firstChild.firstChild.innerText)
+    getSquare(col, rowToFlip).firstChild.classList.add('flip')
   }
 }
 
