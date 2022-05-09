@@ -139,6 +139,7 @@ body {
   }
 
   .you-lose, .you-win {
+    
     visibility: hidden;
     position: absolute;
     right: 50%;

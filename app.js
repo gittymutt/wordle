@@ -126,7 +126,9 @@ function letterPressed(letterChar) {
 
 function update(words) {
   if (row === rowLen) return 0
-  getSquare(row, col).innerText = words[col][row]
+  getSquareFront(row, col).innerText = words[col][row]
+  getSquareBackj(row, col).innerText = words[col][row]
+
 }
 
 function getSquare(x, y) {
