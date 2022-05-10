@@ -5,6 +5,8 @@ let el = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(colLen), () => new Array(rowLen))
 let row = 0
 let col = 0
+let gameWon = false
+
 const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
 const YELLOW_CLASS = "yellow"
