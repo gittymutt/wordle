@@ -214,6 +214,7 @@ function makeSquares(rowLen, colLen) {
     boxFrontSide.classList.add('box-front-side')
     let boxBackSide = document.createElement('div')
     boxBackSide.classList.add('box-back-side')
+  
 
     innerBoxContainer.appendChild(boxFrontSide)
     innerBoxContainer.appendChild(boxBackSide)
