@@ -133,8 +133,8 @@ function letterPressed(letterChar) {
 
 function update(words) {
   if (row === rowLen) return 0
-  getSquareFront(row, col).innerText = words[col][row]
-  getSquareBack(row, col).innerText = words[col][row]
+  getSquareFront(row, col).firstChild.innerText = words[col][row]
+  getSquareBack(row, col).firstChild.innerText = words[col][row]
 
 }
 
