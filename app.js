@@ -36,11 +36,8 @@ function checkWord() {
   for (let row = 0; row < rowLen;++row) {
     getSquareBack(row, col).classList.add(DARK_GRAY_CLASS)
     let letterVal = words[col][row]
-
     if ( tempSecretWord[row] === letterVal) {
-      // let square = getSquare(row, col)
       let squareBack = getSquareBack(row, col)
-
       squareBack.classList.remove(DARK_GRAY_CLASS)
       squareBack.classList.remove(YELLOW_CLASS)
       squareBack.classList.add(GREEN_CLASS)
@@ -120,10 +117,8 @@ function enterPressed() {
 
 function backSpacePressed() {
   if (row > 0)  {row--}
-  // let currentSpace =  getSquare(row, col)
   words[col][row] = ""
   update(words)
-  // currentSpace.innerText = ""
 }
 
 function letterPressed(letterChar) {
