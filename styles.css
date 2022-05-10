@@ -65,7 +65,7 @@ body {
     font-weight: 200;
     font-family: sans-serif;
     position: relative;
-    /* perspective: 1000; */
+    perspective: 1000;
   }
 
  .box-container:hover .box-inner-container {
@@ -96,16 +96,20 @@ body {
     padding-bottom: 10%;
   }
 
-  .box-front-side > *, .box-back-side > * {
-    background-color: inherit;
-  }
-
   .box-back-side {
-    /* background-color: blue; */
     transform: rotateX(180deg);
     -webkit-transform: rotateX(180deg);
   }
 
+  .box-front-side span, .box-back-side span {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
   .flip {
     transform: rotateX(180deg);
   }
