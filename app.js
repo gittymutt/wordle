@@ -5,7 +5,7 @@ let el = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(colLen), () => new Array(rowLen))
 let row = 0
 let col = 0
-let gameWon = false
+let gameOver = false
 
 const backButtonLabel = "<"
 const enterButtonLabel = "ENTER"
@@ -51,6 +51,7 @@ function checkWord() {
   }
   if (numRight === rowLen) {
     document.querySelector(".you-win").style.visibility = "visible"
+    gameOver = true
   }
   
   // Matches letter but not position
@@ -86,6 +87,8 @@ function checkWord() {
 }
 
 el.onkeydown = (e) => {
+  if (gameOver) return 0
+
   // enter
   if (e.which === 13 && row === rowLen) {
     enterPressed()
@@ -111,6 +114,7 @@ function enterPressed() {
     col++
     if (col >= colLen) {
       document.querySelector(".you-lose").style.visibility = "visible"
+      gameOver = true
     }
   }
 }
@@ -165,6 +169,7 @@ function makeKeyboard() {
     
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
       key.onclick = () => {
+        if (gameOver) return
         letterPressed(keys[i])
       }
     }
