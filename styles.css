@@ -10,6 +10,7 @@ body {
     position: relative;
     max-width: 600px;
     margin: auto;
+    /* aspect-ratio: 1 / 4; */
   }
 
   header {
@@ -52,7 +53,6 @@ body {
     margin: 0;
     font-weight: 200;
     font-family: sans-serif;
-    border: solid lightgray 2px;
   }
 
   .box-container {

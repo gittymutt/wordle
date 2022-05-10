@@ -15,7 +15,7 @@ const DARK_GRAY_CLASS = "dark-gray"
 const LIGHT_GRAY_CLASS = "light-gray"
 
 let board = document.querySelector(".board")
-let secretWord = "buddy"
+let secretWord = "cupid"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
