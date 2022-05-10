@@ -25,6 +25,7 @@ body {
     font-size: 1em;
     font-weight: 600;
   }
+
   .board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -95,8 +96,12 @@ body {
     padding-bottom: 10%;
   }
 
+  .box-front-side > *, .box-back-side > * {
+    background-color: inherit;
+  }
+
   .box-back-side {
-    background-color: blue;
+    /* background-color: blue; */
     transform: rotateX(180deg);
     -webkit-transform: rotateX(180deg);
   }
