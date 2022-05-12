@@ -1,0 +1,8 @@
+Make app fit vertically
+Make letters jump when answer is correct
+Make starting overlay screen
+Keep track of scores
+Put in dictionary and check words
+Randomly choose a word each time
+Enable user to choose word length and number of guesses
+Give hints showing the possible words you can choose from
