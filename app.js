@@ -1,6 +1,5 @@
 let numCols = 5
 let numRows = 6
-let body = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(numRows), () => new Array(numCols))
 let curCol = 0
 let curRow = 0
@@ -85,6 +84,7 @@ function checkWord() {
   flipLetters(curRow)
 }
 
+let body = document.getElementsByTagName("body")[0]
 body.onkeydown = (e) => {
   if (gameOver) return 0
 
