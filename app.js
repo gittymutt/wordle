@@ -1,8 +1,8 @@
 
-let rowLen = 5
-let colLen = 6
-let el = document.getElementsByTagName("body")[0]
-let words = Array.from(Array(colLen), () => new Array(rowLen))
+let numCols = 5
+let numRows = 6
+let body = document.getElementsByTagName("body")[0]
+let words = Array.from(Array(numRows), () => new Array(numCols))
 let row = 0
 let col = 0
 let gameOver = false
@@ -19,7 +19,7 @@ let secretWord = "cupid"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
-  makeSquares(rowLen, colLen) //change col and row around
+  makeSquares(numCols, numRows) //change col and row around
   makeKeyboard() 
 }
 
@@ -27,13 +27,13 @@ function checkWord() {
   let tempWord = []
   let tempSecretWord = Array.from(secretWord)
   tempSecretWord = tempSecretWord.map((letter) => letter.toUpperCase())
-  for (let i = 0;i<rowLen;++i) {
+  for (let i = 0;i<numCols;++i) {
     tempWord.push(words[col][i].toUpperCase() )
   }
   
   // Matches letter and position
   let numRight = 0
-  for (let row = 0; row < rowLen;++row) {
+  for (let row = 0; row < numCols;++row) {
     getSquareBack(row, col).classList.add(DARK_GRAY_CLASS)
     let letterVal = words[col][row]
     if ( tempSecretWord[row] === letterVal) {
@@ -49,13 +49,13 @@ function checkWord() {
       numRight++
     } 
   }
-  if (numRight === rowLen) {
+  if (numRight === numCols) {
     document.querySelector(".you-win").style.visibility = "visible"
     gameOver = true
   }
   
   // Matches letter but not position
-  for (let row = 0; row < rowLen;++row) {
+  for (let row = 0; row < numCols;++row) {
     let letter = tempWord[row]
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
@@ -86,11 +86,11 @@ function checkWord() {
   flipLetters(col)
 }
 
-el.onkeydown = (e) => {
+body.onkeydown = (e) => {
   if (gameOver) return 0
 
   // enter
-  if (e.which === 13 && row === rowLen) {
+  if (e.which === 13 && row === numCols) {
     enterPressed()
     return 0
   }
@@ -108,12 +108,12 @@ el.onkeydown = (e) => {
 }
 
 function enterPressed() {
-  if (row === rowLen) {
+  if (row === numCols) {
     row = 0
     checkWord()
     col++
     if (gameOver) return 0
-    if (col >= colLen) {
+    if (col >= numRows) {
       document.querySelector(".you-lose").style.visibility = "visible"
       gameOver = true
     }
@@ -129,28 +129,28 @@ function backSpacePressed() {
 function letterPressed(letterChar) {
   words[col][row] = letterChar.toUpperCase()
   update(words) 
-  if (row < rowLen) { row++ }
+  if (row < numCols) { row++ }
 }
 
 function update(words) {
-  if (row === rowLen) return 0
+  if (row === numCols) return 0
   getSquareFront(row, col).firstChild.innerText = words[col][row]
   getSquareBack(row, col).firstChild.innerText = words[col][row]
 
 }
 
 function getSquare(x, y) {
-  let indexNum = y*rowLen + x
+  let indexNum = y*numCols + x
   return Array.from(board.children)[indexNum]
 }
 
 function getSquareFront(x, y) {
-  let indexNum = y*rowLen + x
+  let indexNum = y*numCols + x
   return Array.from(board.children)[indexNum].firstChild.firstChild
 }
 
 function getSquareBack(x, y) {
-  let indexNum = y*rowLen + x
+  let indexNum = y*numCols + x
   return Array.from(board.children)[indexNum].firstChild.lastChild
 }
 
@@ -189,11 +189,11 @@ function makeKeyboard() {
   }
 }
 
-// row is correct, colLen is really rowLen
+// row is correct, numRows is really numCols
 function flipLetters(rowToFlip) {
-  console.log(`row:${rowToFlip} column len: ${rowLen}`)
+  console.log(`row:${rowToFlip} column len: ${numCols}`)
   let timeDelay = 0
-  for (let col = 0;col < rowLen;++col) {
+  for (let col = 0;col < numCols;++col) {
     
     console.log(getSquare(col, rowToFlip).firstChild.firstChild.innerText)
     setTimeout(() => {
@@ -203,9 +203,9 @@ function flipLetters(rowToFlip) {
   }
 }
 
-function makeSquares(rowLen, colLen) {
+function makeSquares(numCols, numRows) {
   let board = document.querySelector(".board")
-  let numberOfSquares = rowLen * colLen
+  let numberOfSquares = numCols * numRows
   for (let i=0;i<numberOfSquares;++i) {
     let boxContainer = document.createElement('div')
     boxContainer.classList.add('box-container')
