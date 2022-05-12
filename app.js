@@ -112,6 +112,7 @@ function enterPressed() {
     row = 0
     checkWord()
     col++
+    if (gameOver) return 0
     if (col >= colLen) {
       document.querySelector(".you-lose").style.visibility = "visible"
       gameOver = true
