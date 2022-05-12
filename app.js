@@ -80,7 +80,6 @@ function checkWord() {
   }
 
   // Flip Letters
-  console.log("curCol outside flipLetters()" + curCol)
   flipLetters(curRow)
 }
 
@@ -190,11 +189,9 @@ function makeKeyboard() {
 
 // curCol is correct, numRows is really numCols
 function flipLetters(rowToFlip) {
-  console.log(`curCol:${rowToFlip} column len: ${numCols}`)
   let timeDelay = 0
   for (let curRow = 0;curRow < numCols;++curRow) {
     
-    console.log(getSquare(curRow, rowToFlip).firstChild.firstChild.innerText)
     setTimeout(() => {
       getSquare(curRow, rowToFlip).firstChild.classList.add('flip') 
     }, timeDelay)
