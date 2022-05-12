@@ -48,7 +48,7 @@ function checkWord() {
     } 
   }
   if (numRight === numCols) {
-    document.querySelector(".you-win").style.visibility = "visible"
+    document.querySelector(".you-win").style.display = "absolute"
     gameOver = true
   }
   
@@ -112,7 +112,7 @@ function enterPressed() {
     curRow++
     if (gameOver) return 0
     if (curRow >= numRows) {
-      document.querySelector(".you-lose").style.visibility = "visible"
+      document.querySelector(".you-lose").style.display = "none"
       gameOver = true
     }
   }
