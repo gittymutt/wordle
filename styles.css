@@ -7,10 +7,12 @@ body {
   }
   
   .container {
-    position: relative;
-    max-width: 600px;
+    /* position: relative; */
+    position: absolute;
+    max-width: 400px;
     margin: auto;
-    /* aspect-ratio: 1 / 4; */
+    height: 100%;
+    border: white 1px solid; /* remove this */
   }
 
   header {
@@ -119,7 +121,7 @@ body {
     grid-template-columns: repeat(10, 1fr);
     grid-gap: 5px;
     min-width: 320px;
-    max-width: 600px;
+    max-width: 500px;
     min-height: 200px;
     margin-top: 20px;
     margin: 0 auto;
