@@ -1,10 +1,9 @@
-
 let numCols = 5
 let numRows = 6
 let body = document.getElementsByTagName("body")[0]
 let words = Array.from(Array(numRows), () => new Array(numCols))
-let row = 0
-let col = 0
+let curCol = 0
+let curRow = 0
 let gameOver = false
 
 const backButtonLabel = "<"
@@ -19,7 +18,7 @@ let secretWord = "cupid"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
-  makeSquares(numCols, numRows) //change col and row around
+  makeSquares(numCols, numRows) //change curRow and curCol around
   makeKeyboard() 
 }
 
@@ -28,24 +27,24 @@ function checkWord() {
   let tempSecretWord = Array.from(secretWord)
   tempSecretWord = tempSecretWord.map((letter) => letter.toUpperCase())
   for (let i = 0;i<numCols;++i) {
-    tempWord.push(words[col][i].toUpperCase() )
+    tempWord.push(words[curRow][i].toUpperCase() )
   }
   
   // Matches letter and position
   let numRight = 0
-  for (let row = 0; row < numCols;++row) {
-    getSquareBack(row, col).classList.add(DARK_GRAY_CLASS)
-    let letterVal = words[col][row]
-    if ( tempSecretWord[row] === letterVal) {
-      let squareBack = getSquareBack(row, col)
+  for (let curCol = 0; curCol < numCols;++curCol) {
+    getSquareBack(curCol, curRow).classList.add(DARK_GRAY_CLASS)
+    let letterVal = words[curRow][curCol]
+    if ( tempSecretWord[curCol] === letterVal) {
+      let squareBack = getSquareBack(curCol, curRow)
       squareBack.classList.remove(DARK_GRAY_CLASS)
       squareBack.classList.remove(YELLOW_CLASS)
       squareBack.classList.add(GREEN_CLASS)
       let key = getKey(letterVal)
       key.classList.remove(YELLOW_CLASS)
       key.classList.add(GREEN_CLASS)
-      tempSecretWord[row] = null
-      tempWord[row] = null
+      tempSecretWord[curCol] = null
+      tempWord[curCol] = null
       numRight++
     } 
   }
@@ -55,20 +54,20 @@ function checkWord() {
   }
   
   // Matches letter but not position
-  for (let row = 0; row < numCols;++row) {
-    let letter = tempWord[row]
+  for (let curCol = 0; curCol < numCols;++curCol) {
+    let letter = tempWord[curCol]
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
-        let squareBack = getSquareBack(row, col)
+        let squareBack = getSquareBack(curCol, curRow)
         squareBack.classList.remove(DARK_GRAY_CLASS)
         squareBack.classList.add(YELLOW_CLASS)
         let key = getKey(tempSecretWord[matchingSecretLetter])
         if( !key.classList.contains(GREEN_CLASS)) { key.classList.add(YELLOW_CLASS) }
         tempSecretWord[matchingSecretLetter] = null
-        tempWord[row] = null
+        tempWord[curCol] = null
       }
-      let boardVal = getSquare(row, col).innerText.toUpperCase()
+      let boardVal = getSquare(curCol, curRow).innerText.toUpperCase()
     }
   }
 
@@ -82,15 +81,15 @@ function checkWord() {
   }
 
   // Flip Letters
-  console.log("row outside flipLetters()" + row)
-  flipLetters(col)
+  console.log("curCol outside flipLetters()" + curCol)
+  flipLetters(curRow)
 }
 
 body.onkeydown = (e) => {
   if (gameOver) return 0
 
   // enter
-  if (e.which === 13 && row === numCols) {
+  if (e.which === 13 && curCol === numCols) {
     enterPressed()
     return 0
   }
@@ -108,12 +107,12 @@ body.onkeydown = (e) => {
 }
 
 function enterPressed() {
-  if (row === numCols) {
-    row = 0
+  if (curCol === numCols) {
+    curCol = 0
     checkWord()
-    col++
+    curRow++
     if (gameOver) return 0
-    if (col >= numRows) {
+    if (curRow >= numRows) {
       document.querySelector(".you-lose").style.visibility = "visible"
       gameOver = true
     }
@@ -121,21 +120,21 @@ function enterPressed() {
 }
 
 function backSpacePressed() {
-  if (row > 0)  {row--}
-  words[col][row] = ""
+  if (curCol > 0)  {curCol--}
+  words[curRow][curCol] = ""
   update(words)
 }
 
 function letterPressed(letterChar) {
-  words[col][row] = letterChar.toUpperCase()
+  words[curRow][curCol] = letterChar.toUpperCase()
   update(words) 
-  if (row < numCols) { row++ }
+  if (curCol < numCols) { curCol++ }
 }
 
 function update(words) {
-  if (row === numCols) return 0
-  getSquareFront(row, col).firstChild.innerText = words[col][row]
-  getSquareBack(row, col).firstChild.innerText = words[col][row]
+  if (curCol === numCols) return 0
+  getSquareFront(curCol, curRow).firstChild.innerText = words[curRow][curCol]
+  getSquareBack(curCol, curRow).firstChild.innerText = words[curRow][curCol]
 
 }
 
@@ -189,15 +188,15 @@ function makeKeyboard() {
   }
 }
 
-// row is correct, numRows is really numCols
+// curCol is correct, numRows is really numCols
 function flipLetters(rowToFlip) {
-  console.log(`row:${rowToFlip} column len: ${numCols}`)
+  console.log(`curCol:${rowToFlip} column len: ${numCols}`)
   let timeDelay = 0
-  for (let col = 0;col < numCols;++col) {
+  for (let curRow = 0;curRow < numCols;++curRow) {
     
-    console.log(getSquare(col, rowToFlip).firstChild.firstChild.innerText)
+    console.log(getSquare(curRow, rowToFlip).firstChild.firstChild.innerText)
     setTimeout(() => {
-      getSquare(col, rowToFlip).firstChild.classList.add('flip') 
+      getSquare(curRow, rowToFlip).firstChild.classList.add('flip') 
     }, timeDelay)
     timeDelay += 400
   }
