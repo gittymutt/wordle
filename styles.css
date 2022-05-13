@@ -2,48 +2,51 @@
 
 
 /* https://css-tricks.com/fun-viewport-units/ */
+/* https:/stackoverflow.com/questions/20590239/maintain-aspect-ratio-of-div-but-fill-screen-width-and-height-in-css/36295495#20593342 */
 body {
     background-color: black;
     margin: 0;
+    border: rgb(235, 30, 174) 2px solid; /* remove this */
+
     /* position: flex; */
     /* flex-direction: row; */
     /* justify-content: center; */
   }
   
   .container {
-    margin: auto;
-    height: 100vh;
-    width: 100vw;
-    border: rgb(235, 30, 174) 2px solid; /* remove this */
+    
+    /* height: 100vh; */
+    /* width: 100vw; */
     box-sizing: border-box;
+
     /* display: flex; */
     /* flex-direction: column; */
   }
 
-  /* header {
+  header {
     color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-bottom: darkgray 1px solid;
     margin-bottom: 15px;
-  } */
+  }
 
-  /* header h1 {
+  header h1 {
     font-size: 1em;
     font-weight: 600;
-  } */
+  }
 
   .board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    /* grid-gap: 5px; */
+    grid-gap: 5px;
     /* min-width: 320px; */
     /* width: 50%; */
     /* height: 70%; */
     /* max-width: 400px; */
-    margin: auto auto; /* center the board */
+    margin: 10% auto; /* center the board */
     /* margin-bottom: 20px; */
   }
   
@@ -125,7 +128,7 @@ body {
     grid-gap: 2px;
     /* min-width: 220px; */
     /* max-width: 500px; */
-    min-height: 200px;
+    height: 200px;
     /* margin-top: 20px; */
     /* height: 30%; */
     /* width:  */
