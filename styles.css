@@ -6,7 +6,7 @@
 body {
     background-color: black;
     margin: 0;
-    border: rgb(235, 30, 174) 5px solid; /* remove this */
+    /* border: rgb(235, 30, 174) 5px solid;  */
     height: 100vh;
     
   }
@@ -37,6 +37,7 @@ body {
   }
 
   .board {
+    bottom: 70%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
