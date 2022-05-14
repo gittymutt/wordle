@@ -3,6 +3,10 @@
 
 /* https://css-tricks.com/fun-viewport-units/ */
 /* https:/stackoverflow.com/questions/20590239/maintain-aspect-ratio-of-div-but-fill-screen-width-and-height-in-css/36295495#20593342 */
+:root {
+    --yellow: #af8609;
+}
+
 body {
     background-color: black;
     margin: 0;
@@ -127,8 +131,8 @@ body {
   }
 
   .yellow {
-    background-color: #f1ba14;
-    border-color: #f1ba14;
+    background-color: var(--yellow);
+    border-color: var(--yellow);
   }
 
   .light-gray {
