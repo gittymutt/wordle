@@ -125,6 +125,17 @@ body {
     margin: 0 auto;
   }
 
+  .keyboard button {
+    color: black;
+    font-size: 4vw;
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .keyboard button {
+      font-size: 34px;
+    }
+  }
+
   .green {
     background-color: green;
     border-color: green;
