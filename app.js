@@ -18,8 +18,17 @@ let secretWord = "hired"
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
   makeSquares(numCols, numRows) //change curRow and curCol around
-  makeKeyboard() 
+  makeKeyboard()
+  let closeButton = document.querySelector("#close-button")
+  let overlay = document.querySelector("#overlay")
+  let instructionSheet = document.querySelector(".instruction-sheet")
+  closeButton.onclick = () => overlay.style.visibility = "hidden"
+  instructionSheet.onclick = (e) => e.stopPropagation()
+  overlay.onclick = (e) => {
+    overlay.style.visibility = "hidden"
+  }
 }
+
 
 function checkWord() {
   let tempWord = []
