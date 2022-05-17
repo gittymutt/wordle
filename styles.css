@@ -13,6 +13,32 @@ body {
     height: 100vh;
     
   }
+
+  #overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(72, 70, 70, .6);
+
+  }
+
+  .instruction-sheet {
+    position: relative;
+    color: white;
+    padding: 20px;
+    margin: 10%;
+    background-color: rgba(107, 90, 90, 0.6);
+
+  }
+
+  #close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
   
   .container {
     
