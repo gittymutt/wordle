@@ -19,14 +19,23 @@ let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
   makeSquares(numCols, numRows) //change curRow and curCol around
   makeKeyboard()
-  let closeButton = document.querySelector("#close-button")
+  
+  let seenDirections = window.localStorage.getItem("seenDirections")
+  console.log("seenDirections: " + seenDirections)
   let overlay = document.querySelector("#overlay")
-  let instructionSheet = document.querySelector(".instruction-sheet")
-  closeButton.onclick = () => overlay.style.display = "none"
-  instructionSheet.onclick = (e) => e.stopPropagation()
-  overlay.onclick = (e) => {
+  if (!window.localStorage.seenDirections) {
+    let closeButton = document.querySelector("#close-button")
+    let instructionSheet = document.querySelector(".instruction-sheet")
+    closeButton.onclick = () => overlay.style.display = "none"
+    instructionSheet.onclick = (e) => e.stopPropagation()
+    overlay.onclick = (e) => {
+      overlay.style.display = "none"
+    }
+    window.localStorage.setItem("seenDirections", true)
+  } else {
     overlay.style.display = "none"
   }
+  
 }
 
 
