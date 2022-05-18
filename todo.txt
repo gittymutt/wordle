@@ -1,4 +1,5 @@
 Make app fit vertically *CHECK*
+Make square change color and pulse when filled with a letter
 Make letters jump when answer is correct
 Make starting overlay screen
 Keep track of scores
