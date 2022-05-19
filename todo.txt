@@ -1,5 +1,4 @@
 Allow for very large desktop screens
-Make square change color and pulse when filled with a letter
 Make letters jump when answer is correct
 Keep track of scores
 Put in dictionary and check words
