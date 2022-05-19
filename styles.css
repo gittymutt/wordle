@@ -182,7 +182,7 @@ body {
 
   .pulse {
     animation-name: pulse;
-    animation-duration: 0.3s;
+    animation-duration: 0.1s;
     border-color: white;
   }
 

@@ -139,12 +139,16 @@ function enterPressed() {
 function backSpacePressed() {
   if (curCol > 0)  {curCol--}
   words[curRow][curCol] = ""
-  update(words)
+  if (update(words) !== 0) {
+    getSquareFront(curCol, curRow).classList.remove("pulse")
+  }
 }
 
 function letterPressed(letterChar) {
   words[curRow][curCol] = letterChar.toUpperCase()
-  update(words) 
+  if (update(words) !== 0) {
+    getSquareFront(curCol, curRow).classList.add("pulse")
+  }
   if (curCol < numCols) { curCol++ }
 }
 
@@ -152,7 +156,7 @@ function update(words) {
   if (curCol === numCols) return 0
   getSquareFront(curCol, curRow).firstChild.innerText = words[curRow][curCol]
   getSquareBack(curCol, curRow).firstChild.innerText = words[curRow][curCol]
-
+  return true
 }
 
 function getSquare(x, y) {
