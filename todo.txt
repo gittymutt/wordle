@@ -1,7 +1,6 @@
-Make app fit vertically *CHECK*
+Allow for very large desktop screens
 Make square change color and pulse when filled with a letter
 Make letters jump when answer is correct
-Make starting overlay screen
 Keep track of scores
 Put in dictionary and check words
 Randomly choose a word each time
