@@ -46,6 +46,18 @@ function checkWord() {
   for (let i = 0;i<numCols;++i) {
     tempWord.push(words[curRow][i].toUpperCase() )
   }
+
+  let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
+  if (wordIndex === -1) {
+    alert(`${tempWord.join('')} is not in my dictionary.`)
+    console.log(curCol, curRow)
+    return 0
+  }
+  
+  curCol = 0
+  console.log("word: " + tempWord.join('').toLowerCase())
+  console.log("word index: " + dict.indexOf(tempWord.join('').toLowerCase()))
+  console.log( wordIndex !== -1)
   
   // Matches letter and position
   let numRight = 0
@@ -86,6 +98,7 @@ function checkWord() {
       }
       let boardVal = getSquare(curCol, curRow).innerText.toUpperCase()
     }
+  
   }
 
   // Unmatching letters
@@ -99,6 +112,7 @@ function checkWord() {
 
   // Flip Letters
   flipLetters(curRow)
+  curRow++
 }
 
 let body = document.getElementsByTagName("body")[0]
@@ -125,9 +139,9 @@ body.onkeydown = (e) => {
 
 function enterPressed() {
   if (curCol === numCols) {
-    curCol = 0
+    // curCol = 0
     checkWord()
-    curRow++
+    // curRow++
     if (gameOver) return 0
     if (curRow >= numRows) {
       document.querySelector(".you-lose").style.visibility = "visible"
