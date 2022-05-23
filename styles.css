@@ -183,7 +183,7 @@ body {
   .pulse {
     animation-name: pulse;
     animation-duration: 0.1s;
-    border-color: white;
+    border-color: rgb(185, 165, 165);
   }
 
   @keyframes pulse {
