@@ -55,9 +55,9 @@ function checkWord() {
   }
   
   curCol = 0
-  console.log("word: " + tempWord.join('').toLowerCase())
-  console.log("word index: " + dict.indexOf(tempWord.join('').toLowerCase()))
-  console.log( wordIndex !== -1)
+  // console.log("word: " + tempWord.join('').toLowerCase())
+  // console.log("word index: " + dict.indexOf(tempWord.join('').toLowerCase()))
+  // console.log( wordIndex !== -1)
   
   // Matches letter and position
   let numRight = 0
@@ -97,6 +97,7 @@ function checkWord() {
         tempWord[curCol] = null
       }
       let boardVal = getSquare(curCol, curRow).innerText.toUpperCase()
+      console.log("boardval: " + boardVal)
     }
   
   }
@@ -134,12 +135,14 @@ body.onkeydown = (e) => {
   // letters only
   if (e.which >=65 && e.which <= 90) {
     letterPressed(e.key)
+    // console.log("leterpressed")
   }
 }
 
 function enterPressed() {
   if (curCol === numCols) {
     // curCol = 0
+    console.log("Enter pressed from enterpressed()")
     checkWord()
     // curRow++
     if (gameOver) return 0
@@ -170,7 +173,7 @@ function update(words) {
   if (curCol === numCols) return 0
   getSquareFront(curCol, curRow).firstChild.innerText = words[curRow][curCol]
   getSquareBack(curCol, curRow).firstChild.innerText = words[curRow][curCol]
-  return true
+  return 1
 }
 
 function getSquare(x, y) {
@@ -205,6 +208,7 @@ function makeKeyboard() {
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
       key.onclick = () => {
         if (gameOver) return
+        console.log("pressed from onclick: " + keys[i])
         letterPressed(keys[i])
       }
     }
