@@ -7,6 +7,7 @@
     --yellow: #af8609;
 }
 
+/* Prevent ios from zooming on double tap */
 button {
   touch-action: manipulation;
 }
@@ -14,9 +15,8 @@ button {
 body {
     background-color: black;
     margin: 0;
-    height: 100vh;
-    
-  }
+    height: 100vh;    
+}
 
   #overlay {
     position: absolute;
@@ -78,16 +78,11 @@ body {
     font-family: sans-serif;
   }
 
-  
-  
   .container {
     /* For height, subtract the height of the header+margin 
     and also the margin under the keyboard */
-    /* height: calc(100% - 80px);  */
     height: calc(100% - 58px); 
-
     position: relative;
-    /* border: red solid 1px; */
   }
 
   /* be sure to count height and calculate above in container height */
@@ -107,8 +102,6 @@ body {
   }
 
   .board {
-    /* border: red 1px solid; */
-    /* bottom: 70%; */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -218,9 +211,7 @@ body {
     grid-template-columns: repeat(10, 1fr);
     grid-gap: 3px;
     max-width: 800px;
-    margin: 0 auto;
-    /* border: green 1px solid; */
-    
+    margin: 0 auto;    
   }
 
   .keyboard button {

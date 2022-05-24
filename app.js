@@ -103,7 +103,6 @@ function checkWord() {
     key.classList.add(LIGHT_GRAY_CLASS) 
   }
 
-  // Flip Letters
   flipLetters(curRow)
   curRow++
 }
@@ -217,11 +216,9 @@ function makeKeyboard() {
   }
 }
 
-// curCol is correct, numRows is really numCols
 function flipLetters(rowToFlip) {
   let timeDelay = 0
   for (let curRow = 0;curRow < numCols;++curRow) {
-    
     setTimeout(() => {
       getSquare(curRow, rowToFlip).firstChild.classList.add('flip') 
     }, timeDelay)
