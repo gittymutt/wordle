@@ -48,6 +48,7 @@ function checkWord() {
   let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
   if (wordIndex === -1) {
     alert(`${tempWord.join('')} is not in my dictionary.`)
+    shakeRow()
     return 0
   }
   
@@ -224,6 +225,16 @@ function flipLetters(rowToFlip) {
     }, timeDelay)
     timeDelay += 400
   }
+}
+
+function shakeRow() {
+  let timeDelay = 800
+  for (let curCol = 0;curCol < numCols;++curCol) {
+    getSquare(curCol, curRow).classList.add("shake")
+    setTimeout(() => {
+      getSquare(curCol, curRow).classList.remove("shake")
+    }, timeDelay)
+  } 
 }
 
 function makeSquares(numCols, numRows) {

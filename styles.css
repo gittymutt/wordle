@@ -201,6 +201,20 @@ body {
     }
   }
 
+  .shake {
+    animation-name: shake;
+    animation-duration: .1s;
+    animation-iteration-count: 8;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0px) }
+    33% { transform: translateX(-3px) }
+    66% { transform: translateX(0px) }
+    75% { transform: translateX(3px) }
+    100% { transform: translateX(0px) }
+  }
+
   .keyboard {
     position: absolute;
     top: 60%;
