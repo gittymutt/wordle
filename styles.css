@@ -220,12 +220,17 @@ body {
     max-width: 800px;
     margin: 0 auto;
     /* border: green 1px solid; */
+    
   }
 
   .keyboard button {
     color: black;
     font-size: 4vw;
     padding: 0;
+  }
+
+  .keyboard button:focus {
+    border: yellow 3px solid;
   }
 
   @media only screen and (min-width: 1000px) {

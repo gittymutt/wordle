@@ -21,7 +21,6 @@ document.querySelector("body").onload = () => {
   makeKeyboard()
   
   let seenDirections = window.localStorage.getItem("seenDirections")
-  console.log("seenDirections: " + seenDirections)
   let overlay = document.querySelector("#overlay")
   if (!window.localStorage.seenDirections) {
     let closeButton = document.querySelector("#close-button")
@@ -38,7 +37,6 @@ document.querySelector("body").onload = () => {
   
 }
 
-
 function checkWord() {
   let tempWord = []
   let tempSecretWord = Array.from(secretWord)
@@ -50,14 +48,10 @@ function checkWord() {
   let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
   if (wordIndex === -1) {
     alert(`${tempWord.join('')} is not in my dictionary.`)
-    console.log(curCol, curRow)
     return 0
   }
   
   curCol = 0
-  // console.log("word: " + tempWord.join('').toLowerCase())
-  // console.log("word index: " + dict.indexOf(tempWord.join('').toLowerCase()))
-  // console.log( wordIndex !== -1)
   
   // Matches letter and position
   let numRight = 0
@@ -97,9 +91,7 @@ function checkWord() {
         tempWord[curCol] = null
       }
       let boardVal = getSquare(curCol, curRow).innerText.toUpperCase()
-      console.log("boardval: " + boardVal)
     }
-  
   }
 
   // Unmatching letters
@@ -119,10 +111,10 @@ function checkWord() {
 let body = document.getElementsByTagName("body")[0]
 body.onkeydown = (e) => {
   if (gameOver) return 0
-
   // enter
-  if (e.which === 13 && curCol === numCols) {
-    enterPressed()
+  if (e.which === 13) {
+    if (curCol === numCols) enterPressed()
+    document.activeElement.blur() // prevents previously clicked key from firing
     return 0
   }
   
@@ -135,14 +127,12 @@ body.onkeydown = (e) => {
   // letters only
   if (e.which >=65 && e.which <= 90) {
     letterPressed(e.key)
-    // console.log("leterpressed")
   }
 }
 
 function enterPressed() {
   if (curCol === numCols) {
     // curCol = 0
-    console.log("Enter pressed from enterpressed()")
     checkWord()
     // curRow++
     if (gameOver) return 0
@@ -205,10 +195,10 @@ function makeKeyboard() {
     key.style.border = "none"
     key.style.borderRadius = "7px"
     
+    
     if (keys[i] != enterButtonLabel && keys[i] != backButtonLabel) { // make an isAlpha function
-      key.onclick = () => {
+      key.onclick = (e) => {
         if (gameOver) return
-        console.log("pressed from onclick: " + keys[i])
         letterPressed(keys[i])
       }
     }
