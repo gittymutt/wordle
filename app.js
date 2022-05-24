@@ -13,11 +13,12 @@ const DARK_GRAY_CLASS = "dark-gray"
 const LIGHT_GRAY_CLASS = "light-gray"
 
 let board = document.querySelector(".board")
-let secretWord = "hired"
+
+let secretWord = "piano"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
-  makeSquares(numCols, numRows) //change curRow and curCol around
+  makeSquares(numCols, numRows)
   makeKeyboard()
   
   let seenDirections = window.localStorage.getItem("seenDirections")
