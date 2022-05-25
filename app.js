@@ -155,6 +155,7 @@ function enterPressed() {
   if (curCol === numCols) {
     // curCol = 0
     checkWord()
+    updateHints()
     // curRow++
     if (gameOver) return 0
     if (curRow >= numRows) {
@@ -301,7 +302,14 @@ function toggleHints() {
   }
 }
 
-
+function updateHints() {
+  let hintTextarea = document.querySelector("#hint-textarea")
+  let wordList = getPossibleWords(answers.getRegEx())
+  hintTextarea.value = ""
+  for (let word of wordList) {
+    hintTextarea.value += word + "\n"
+  }
+}
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
