@@ -16,7 +16,8 @@ let board = document.querySelector(".board")
 
 let list = dict.filter((w) => w.length === 5)
 let secretWord = list[Math.floor(list.length * Math.random())]
-// let secretWord = "piano"
+let secretWordElement = document.querySelector("#secret-word")
+secretWordElement.textContent = secretWord
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
