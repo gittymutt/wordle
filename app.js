@@ -129,6 +129,8 @@ function checkWord() {
 
   flipLetters(curRow)
   curRow++
+
+  console.log("Possible words: " + getPossibleWords(answers.getRegEx()))
 }
 
 let body = document.getElementsByTagName("body")[0]
@@ -284,10 +286,13 @@ function makeSquares(numCols, numRows) {
   }
 }
 
-function getPossibleWords() {
-  const regex = new RegExp('(?=.*a)t....');
-  const globalRegex = new RegExp('foo*', 'g');
-  console.log(regex.test(str));
+function getPossibleWords(regexStr) {
+  const regex = new RegExp(regexStr);
+  console.log(regex)
+  let possibleWords = dict.filter((word) => {
+    return regex.test(word.toUpperCase())
+  })
+  return possibleWords 
 }
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
@@ -312,9 +317,7 @@ class AnswerData {
   }
 
   insertYellowLetterAt(letter, index) {
-    console.log("yellow array: " + this.yellow[index] + " letter: " + letter + "   indexof: " + this.yellow[index].indexOf(letter))
     if (this.yellow[index].indexOf(letter) === -1) { // insert if not there already
-      console.log("yellow letter" + letter + "found and added")
       this.yellow[index].push(letter)
     }
   }
@@ -323,5 +326,36 @@ class AnswerData {
     if (this.gray.indexOf(letter) === -1) { // insert if not there already
       this.gray.push(letter)
     }
+  }
+
+  getRegEx() {
+    let regString = "^"
+    let allYellowLetters = []
+    for (let col of this.yellow) {
+      for (let letter of col) {
+        if (allYellowLetters.indexOf(letter) === -1) {
+          allYellowLetters.push(letter)
+        }
+      }
+    }
+    console.log("Yellow letters: " + allYellowLetters)
+    for (let letter of allYellowLetters) {
+      regString += `(?=.*${letter})`
+    }
+
+
+
+    for (let i=0;i<numCols;++i) {
+      if (this.green[i]) {
+        regString += this.green[i]
+      } else {
+        regString += "[^"
+        regString += this.gray.join('')
+        regString += this.yellow[i].join('')
+        regString += "]"
+      }
+    }
+    regString += "$"
+    return regString
   }
 }
