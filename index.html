@@ -48,8 +48,14 @@
         </div>
     </div>
     <header>
-      <h1>Prdle</h1>
+      <button id="hint-button">Hint</button><h1>Prdle</h1><span>Stats</span>
     </header>
+    <div id="cheat-sheet">
+        Possible words:
+        <textarea> 
+        
+        </textarea>
+     </div>
     <div class="container">
       
         <div class="you-lose">
@@ -66,30 +72,7 @@
 
         <div class="board"></div>
         <div class="keyboard"></div>
-        <div id="cheat-sheet">
-           <textarea cols="20"> 
-            const str = 'table football';
-
-            const regex = new RegExp('foo*');
-            const globalRegex = new RegExp('foo*', 'g');
-            
-            console.log(regex.test(str));
-            // expected output: true
-            
-            console.log(globalRegex.lastIndex);
-            // expected output: 0
-            
-            console.log(globalRegex.test(str));
-            // expected output: true
-            
-            console.log(globalRegex.lastIndex);
-            // expected output: 9
-            
-            console.log(globalRegex.test(str));
-            // expected output: false
-            
-           </textarea>
-        </div>
+        
     </div>
     
 

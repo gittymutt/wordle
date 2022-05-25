@@ -30,6 +30,7 @@ document.querySelector("body").onload = () => {
   makeKeyboard()
   answers = new AnswerData(numCols)
   
+  // Show Instructions
   let seenDirections = window.localStorage.getItem("seenDirections")
   let overlay = document.querySelector("#overlay")
   if (!window.localStorage.seenDirections) {
@@ -44,6 +45,9 @@ document.querySelector("body").onload = () => {
   } else {
     overlay.style.display = "none"
   }
+
+  // Hint Button
+  document.querySelector("#hint-button").onclick = toggleHints
 }
 
 function checkWord() {
@@ -286,9 +290,20 @@ function getPossibleWords(regexStr) {
   return possibleWords 
 }
 
+function toggleHints() {
+  let cheatSheet = document.querySelector("#cheat-sheet")
+  cheatSheet.classList.toggle("show-hint")
+}
+
+
+
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
             enterButtonLabel,"z","x","c","v","b","n","m", backButtonLabel]
+
+
+
+
 
 
 class AnswerData {
