@@ -22,12 +22,6 @@ let wrongWord = document.querySelector(".wrong-word")
 let keyboard = document.querySelector(".keyboard")
 let answers
 
-// let answerData = {
-//   green: new Array(numCols),
-//   yellow: new Array(numCols),
-//   grays: []
-// }
-
 document.querySelector("body").onload = () => {
   for (let w of secretWordElements) {
     w.textContent = secretWord
@@ -129,8 +123,6 @@ function checkWord() {
 
   flipLetters(curRow)
   curRow++
-
-  console.log("Possible words: " + getPossibleWords(answers.getRegEx()))
 }
 
 let body = document.getElementsByTagName("body")[0]
@@ -288,7 +280,6 @@ function makeSquares(numCols, numRows) {
 
 function getPossibleWords(regexStr) {
   const regex = new RegExp(regexStr);
-  console.log(regex)
   let possibleWords = dict.filter((word) => {
     return regex.test(word.toUpperCase())
   })
@@ -338,13 +329,9 @@ class AnswerData {
         }
       }
     }
-    console.log("Yellow letters: " + allYellowLetters)
     for (let letter of allYellowLetters) {
       regString += `(?=.*${letter})`
     }
-
-
-
     for (let i=0;i<numCols;++i) {
       if (this.green[i]) {
         regString += this.green[i]
