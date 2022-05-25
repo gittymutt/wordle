@@ -12,6 +12,7 @@ const GREEN_CLASS = "green"
 const DARK_GRAY_CLASS = "dark-gray"
 const LIGHT_GRAY_CLASS = "light-gray"
 
+let hintsOpen = false
 let board = document.querySelector(".board")
 
 let list = dict.filter((w) => w.length === 5)
@@ -294,6 +295,14 @@ function getPossibleWords(regexStr) {
 function toggleHints() {
   let cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
+  let hintButtonElement = document.querySelector("#hint-button")
+  if (!hintsOpen) {
+    hintButtonElement.textContent = "Close Hints"
+  } else {
+    hintButtonElement.textContent = "Open Hints"
+  }
+  hintsOpen = !hintsOpen
+
   let hintTextarea = document.querySelector("#hint-textarea")
   let wordList = getPossibleWords(answers.getRegEx())
   hintTextarea.value = ""
