@@ -14,7 +14,9 @@ const LIGHT_GRAY_CLASS = "light-gray"
 
 let board = document.querySelector(".board")
 
-let secretWord = "piano"
+let list = dict.filter((w) => w.length === 5)
+let secretWord = list[Math.floor(list.length * Math.random())]
+// let secretWord = "piano"
 
 let keyboard = document.querySelector(".keyboard")
 document.querySelector("body").onload = () => { 
