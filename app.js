@@ -293,6 +293,12 @@ function getPossibleWords(regexStr) {
 function toggleHints() {
   let cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
+  let hintTextarea = document.querySelector("#hint-textarea")
+  let wordList = getPossibleWords(answers.getRegEx())
+  hintTextarea.value = ""
+  for (let word of wordList) {
+    hintTextarea.value += word + "\n"
+  }
 }
 
 

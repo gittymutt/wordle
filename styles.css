@@ -292,6 +292,7 @@ body {
     color: white;
     background-color: rgba(0, 0, 0, .7);
     border: solid green 3px;
+    box-sizing: border-box;
   }
 
   #cheat-sheet textarea {
