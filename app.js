@@ -17,9 +17,10 @@ let board = document.querySelector(".board")
 let list = dict.filter((w) => w.length === 5)
 let secretWord = list[Math.floor(list.length * Math.random())]
 let secretWordElements = document.querySelectorAll(".secret-word")
-
-
+let wrongWordElement = document.querySelector(".show-wrong-word")
+let wrongWord = document.querySelector(".wrong-word")
 let keyboard = document.querySelector(".keyboard")
+
 document.querySelector("body").onload = () => {
   for (let w of secretWordElements) {
     w.textContent = secretWord
@@ -54,7 +55,12 @@ function checkWord() {
 
   let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
   if (wordIndex === -1) {
-    alert(`${tempWord.join('')} is not in my dictionary.`)
+    // alert(`${tempWord.join('')} is not in my dictionary.`)
+    wrongWord.textContent = tempWord.join('')
+    wrongWordElement.style.visibility = "visible"
+    setTimeout(() => {
+      wrongWordElement.style.visibility = "hidden"
+    }, 1500)
     shakeRow()
     return 0
   }

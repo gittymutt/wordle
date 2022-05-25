@@ -264,7 +264,7 @@ body {
     border-color: #534c4c;
   }
 
-  .you-lose, .you-win {
+  .you-lose, .you-win, .show-wrong-word {
     z-index: 1000;
     visibility: hidden;
     position: absolute;
@@ -273,6 +273,7 @@ body {
     text-align: center;
     padding: 10%;
     border-radius: 5px;
+    background-color: white;
   }
 
   .you-win {
@@ -281,9 +282,3 @@ body {
     color: rgb(9, 8, 8);
     padding: 0px 30px;
   }
-
-  .you-lose {
-    background-color: white;
-  }
-  
-  
