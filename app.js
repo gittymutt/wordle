@@ -16,11 +16,14 @@ let board = document.querySelector(".board")
 
 let list = dict.filter((w) => w.length === 5)
 let secretWord = list[Math.floor(list.length * Math.random())]
-let secretWordElement = document.querySelector("#secret-word")
-secretWordElement.textContent = secretWord
+let secretWordElements = document.querySelectorAll(".secret-word")
+
 
 let keyboard = document.querySelector(".keyboard")
-document.querySelector("body").onload = () => { 
+document.querySelector("body").onload = () => {
+  for (let w of secretWordElements) {
+    w.textContent = secretWord
+  } 
   makeSquares(numCols, numRows)
   makeKeyboard()
   
