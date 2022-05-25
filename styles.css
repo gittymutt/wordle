@@ -282,3 +282,17 @@ body {
     color: rgb(9, 8, 8);
     padding: 0px 30px;
   }
+
+  #cheat-sheet {
+    position: absolute;
+    top: -10px;
+    z-index: 20000;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, .7);
+    border: red solid 3px;
+    display: none;
+  }
+
+  #cheat-sheet textarea {
+    width: 100%;
+  }
