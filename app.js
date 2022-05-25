@@ -55,7 +55,6 @@ function checkWord() {
 
   let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
   if (wordIndex === -1) {
-    // alert(`${tempWord.join('')} is not in my dictionary.`)
     wrongWord.textContent = tempWord.join('')
     wrongWordElement.style.visibility = "visible"
     setTimeout(() => {
@@ -272,6 +271,12 @@ function makeSquares(numCols, numRows) {
     boxContainer.appendChild(innerBoxContainer)
     board.appendChild(boxContainer)
   }
+}
+
+function getPossibleWords() {
+  const regex = new RegExp('(?=.*a)t....');
+  const globalRegex = new RegExp('foo*', 'g');
+  console.log(regex.test(str));
 }
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
