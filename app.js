@@ -20,6 +20,13 @@ let secretWordElements = document.querySelectorAll(".secret-word")
 let wrongWordElement = document.querySelector(".show-wrong-word")
 let wrongWord = document.querySelector(".wrong-word")
 let keyboard = document.querySelector(".keyboard")
+let answers
+
+// let answerData = {
+//   green: new Array(numCols),
+//   yellow: new Array(numCols),
+//   grays: []
+// }
 
 document.querySelector("body").onload = () => {
   for (let w of secretWordElements) {
@@ -27,6 +34,7 @@ document.querySelector("body").onload = () => {
   } 
   makeSquares(numCols, numRows)
   makeKeyboard()
+  answers = new AnswerData(numCols)
   
   let seenDirections = window.localStorage.getItem("seenDirections")
   let overlay = document.querySelector("#overlay")
@@ -42,7 +50,6 @@ document.querySelector("body").onload = () => {
   } else {
     overlay.style.display = "none"
   }
-  
 }
 
 function checkWord() {
@@ -72,6 +79,7 @@ function checkWord() {
     getSquareBack(curCol, curRow).classList.add(DARK_GRAY_CLASS)
     let letterVal = words[curRow][curCol]
     if ( tempSecretWord[curCol] === letterVal) {
+      answers.insertGreenLetterAt(letterVal, curCol) // store green letters for regex
       let squareBack = getSquareBack(curCol, curRow)
       squareBack.classList.remove(DARK_GRAY_CLASS)
       squareBack.classList.remove(YELLOW_CLASS)
@@ -89,12 +97,14 @@ function checkWord() {
     gameOver = true
   }
   
-  // Matches letter but not position
+  // Letters are in word but not in right position - turn yellow
   for (let curCol = 0; curCol < numCols;++curCol) {
+    
     let letter = tempWord[curCol]
     if (letter !== null) {
       let matchingSecretLetter = tempSecretWord.indexOf(letter)
       if (matchingSecretLetter >= 0) {
+        answers.insertYellowLetterAt(letter, curCol) // for regex hint search
         let squareBack = getSquareBack(curCol, curRow)
         squareBack.classList.remove(DARK_GRAY_CLASS)
         squareBack.classList.add(YELLOW_CLASS)
@@ -107,9 +117,10 @@ function checkWord() {
     }
   }
 
-  // Unmatching letters
+  // Unmatching letters - turn gray
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
+    answers.insertGrayLetter(letter)
     let key = getKey(letter)
     if (key.classList.contains(GREEN_CLASS)) continue 
     if (key.classList.contains(YELLOW_CLASS)) continue 
@@ -282,3 +293,35 @@ function getPossibleWords() {
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
             enterButtonLabel,"z","x","c","v","b","n","m", backButtonLabel]
+
+
+class AnswerData {
+  numCols
+  green
+  yellow
+  gray
+  constructor(paramCols) {
+    this.numCols = paramCols
+    this.green =  new Array(numCols),
+    this.yellow = Array.from(Array(numCols), () => new Array())
+    this.gray = []    
+  }
+
+  insertGreenLetterAt(letter, index) {
+    this.green[index] = letter
+  }
+
+  insertYellowLetterAt(letter, index) {
+    console.log("yellow array: " + this.yellow[index] + " letter: " + letter + "   indexof: " + this.yellow[index].indexOf(letter))
+    if (this.yellow[index].indexOf(letter) === -1) { // insert if not there already
+      console.log("yellow letter" + letter + "found and added")
+      this.yellow[index].push(letter)
+    }
+  }
+
+  insertGrayLetter(letter) {
+    if (this.gray.indexOf(letter) === -1) { // insert if not there already
+      this.gray.push(letter)
+    }
+  }
+}
