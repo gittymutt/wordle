@@ -72,7 +72,7 @@ function checkWord() {
   
   curCol = 0
   
-  // Matches letter and position
+  // Matches letter and position - turn green
   let numRight = 0
   for (let curCol = 0; curCol < numCols;++curCol) {
     getSquareBack(curCol, curRow).classList.add(DARK_GRAY_CLASS)
