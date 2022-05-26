@@ -48,7 +48,10 @@ document.querySelector("body").onload = () => {
   }
 
   // Hint Button
-  document.querySelector("#hint-button").onclick = toggleHints
+  let hintButtonElement = document.querySelector("#hint-button")
+  hintButtonElement.onclick = toggleHints
+  // hintButtonElement.textContent = `Open Hints (${list.length})`
+  updateHintButton(list.length, false)
 }
 
 function checkWord() {
@@ -119,7 +122,7 @@ function checkWord() {
   // Unmatching letters - turn gray
   tempWord = tempWord.filter((letter) => letter !== null)
   for (const letter of tempWord) {
-    answers.insertGrayLetter(letter)
+    answers.insertGrayLetter(letter) // for regex search
     let key = getKey(letter)
     if (key.classList.contains(GREEN_CLASS)) continue 
     if (key.classList.contains(YELLOW_CLASS)) continue 
@@ -157,6 +160,7 @@ function enterPressed() {
     // curCol = 0
     checkWord()
     updateHints()
+    updateHintButton(getPossibleWords(answers.getRegEx()).length)
     // curRow++
     if (gameOver) return 0
     if (curRow >= numRows) {
@@ -295,11 +299,15 @@ function getPossibleWords(regexStr) {
 function toggleHints() {
   let cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
+  let numWords = getPossibleWords(answers.getRegEx()).length
   let hintButtonElement = document.querySelector("#hint-button")
   if (!hintsOpen) {
-    hintButtonElement.textContent = "Close Hints"
+    // hintButtonElement.textContent = `Close Hints (${numWords})` 
+    updateHintButton(numWords, true)
   } else {
-    hintButtonElement.textContent = "Open Hints"
+    // hintButtonElement.textContent = `Open Hints (${numWords})`
+    updateHintButton(numWords, false)
+
   }
   hintsOpen = !hintsOpen
 
@@ -318,6 +326,24 @@ function updateHints() {
   for (let word of wordList) {
     hintTextarea.value += word + "\n"
   }
+}
+
+// parameters: numWords - number of words in result
+//             open - if true, button says open, if false, says closed
+//             if no parameter, stays the same
+function updateHintButton(numWords, open=null) {
+  let hintButtonElement = document.querySelector("#hint-button")
+  let openOrClose
+  if (open !== null) {
+    if (open) {
+      openOrClose = "Close"
+    } else {
+      openOrClose = "Open"
+    }
+  } else {
+    openOrClose = hintButtonElement.textContent.split(/(\s+)/)[0]
+  }
+  hintButtonElement.textContent = `${openOrClose} Hints (${numWords})`
 }
 
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
