@@ -304,7 +304,7 @@ body {
     display: block !important;
   }
 
-  #lets-play {
+  #lets-play, .play-again {
     display: block;
     background-color: green;
     font-size: 2em;
