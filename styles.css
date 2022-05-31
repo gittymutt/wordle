@@ -303,3 +303,15 @@ body {
   .show-hint {
     display: block !important;
   }
+
+  #lets-play {
+    display: block;
+    background-color: green;
+    font-size: 2em;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+
+  }

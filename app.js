@@ -37,7 +37,9 @@ document.querySelector("body").onload = () => {
   if (!window.localStorage.seenDirections) {
     let closeButton = document.querySelector("#close-button")
     let instructionSheet = document.querySelector(".instruction-sheet")
+    let letsPlayButton = document.querySelector("#lets-play")
     closeButton.onclick = () => overlay.style.display = "none"
+    letsPlayButton.onclick = () => overlay.style.display = "none"
     instructionSheet.onclick = (e) => e.stopPropagation()
     overlay.onclick = (e) => {
       overlay.style.display = "none"
