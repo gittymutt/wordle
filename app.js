@@ -54,6 +54,12 @@ document.querySelector("body").onload = () => {
   hintButtonElement.onclick = toggleHints
   // hintButtonElement.textContent = `Open Hints (${list.length})`
   updateHintButton(list.length, false)
+
+  // Play Again Button
+  let playAgainButton = document.querySelectorAll(".play-again")
+  for (button of playAgainButton) {
+    button.onclick = () => window.location.reload();
+  }
 }
 
 function checkWord() {
