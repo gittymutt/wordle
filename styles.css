@@ -306,12 +306,12 @@ body {
 
   #lets-play, .play-again {
     display: block;
-    background-color: green;
+    background-color: rgb(228, 224, 17);
     font-size: 2em;
     padding: 10px;
     border-radius: 5px;
     position: relative;
     width: 300px;
     margin: 0 auto;
-
+    margin-bottom: 10px;
   }
