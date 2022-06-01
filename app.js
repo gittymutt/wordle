@@ -15,7 +15,8 @@ const LIGHT_GRAY_CLASS = "light-gray"
 let hintsOpen = false
 let board = document.querySelector(".board")
 
-let list = dict.filter((w) => w.length === 5)
+// let list = dict.filter((w) => w.length === 5)
+let list = dict // save big dictionary in case we want bigger words later
 let secretWord = list[Math.floor(list.length * Math.random())]
 let secretWordElements = document.querySelectorAll(".secret-word")
 let wrongWordElement = document.querySelector(".show-wrong-word")
