@@ -73,11 +73,12 @@ function checkWord() {
 
   let wordIndex = dict.indexOf(tempWord.join('').toLowerCase())
   if (wordIndex === -1) {
+    
     wrongWord.textContent = tempWord.join('')
     wrongWordElement.style.visibility = "visible"
     setTimeout(() => {
       wrongWordElement.style.visibility = "hidden"
-    }, 1500)
+    }, 2500)
     shakeRow()
     return 0
   }
@@ -264,8 +265,10 @@ function flipLetters(rowToFlip) {
 }
 
 function shakeRow() {
-  let timeDelay = 800
+  let timeDelay = 3000
+  
   for (let curCol = 0;curCol < numCols;++curCol) {
+    getSquare(curCol, curRow).classList.remove("shake")
     getSquare(curCol, curRow).classList.add("shake")
     setTimeout(() => {
       getSquare(curCol, curRow).classList.remove("shake")
@@ -363,7 +366,9 @@ let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
 
 
 
-
+// Gathers info about previous answers and creates a regex expression
+// that filters out words that can be eliminated based on the user's
+// previous answers
 class AnswerData {
   numCols
   green
