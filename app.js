@@ -53,7 +53,6 @@ document.querySelector("body").onload = () => {
   // Hint Button
   let hintButtonElement = document.querySelector("#hint-button")
   hintButtonElement.onclick = toggleHints
-  // hintButtonElement.textContent = `Open Hints (${list.length})`
   updateHintButton(list.length, false)
 
   // Play Again Button
@@ -314,10 +313,8 @@ function toggleHints() {
   let numWords = getPossibleWords(answers.getRegEx()).length
   let hintButtonElement = document.querySelector("#hint-button")
   if (!hintsOpen) {
-    // hintButtonElement.textContent = `Close Hints (${numWords})` 
     updateHintButton(numWords, true)
   } else {
-    // hintButtonElement.textContent = `Open Hints (${numWords})`
     updateHintButton(numWords, false)
 
   }
@@ -325,20 +322,27 @@ function toggleHints() {
 
   let hintTextarea = document.querySelector("#hint-textarea")
   let wordList = getPossibleWords(answers.getRegEx())
-  hintTextarea.value = ""
-  for (let word of wordList) {
-    hintTextarea.value += word + "\n"
-  }
+  fillHintTextArea(hintTextarea, wordList)
 }
 
 function updateHints() {
   let hintTextarea = document.querySelector("#hint-textarea")
   let wordList = getPossibleWords(answers.getRegEx())
+  fillHintTextArea(hintTextarea, wordList)
+}
+
+function fillHintTextArea(hintTextarea, wordList) {
   hintTextarea.value = ""
-  for (let word of wordList) {
-    hintTextarea.value += word + "\n"
+  if (wordList.length > 1000) {
+    hintTextarea.value += "Too many words to list!\n"
+  } else {
+    for (let word of wordList) {
+      hintTextarea.value += word + "\n"
+    }
   }
 }
+
+
 
 // parameters: numWords - number of words in result
 //             open - if true, button says open, if false, says closed
