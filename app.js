@@ -104,6 +104,7 @@ function checkWord() {
     } 
   }
   if (numRight === numCols) {
+    setDictionaryLink(secretWord)
     document.querySelector(".you-win").style.visibility = "visible"
     gameOver = true
   }
@@ -173,6 +174,7 @@ function enterPressed() {
     // curRow++
     if (gameOver) return 0
     if (curRow >= numRows) {
+      setDictionaryLink(secretWord)
       document.querySelector(".you-lose").style.visibility = "visible"
       gameOver = true
     }
@@ -362,6 +364,14 @@ function updateHintButton(numWords, open=null) {
   hintButtonElement.textContent = `${openOrClose} Hints (${numWords})`
 }
 
+function setDictionaryLink(word) {
+  let dictLink = document.querySelectorAll(".dictionary-link")
+  for (link of dictLink) {
+    link.setAttribute("href", "https://www.collinsdictionary.com/dictionary/english/" + word);
+  }
+    
+}
+
 let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
             "a","s","d","f","g","h","j","k","l",
             enterButtonLabel,"z","x","c","v","b","n","m", backButtonLabel]
@@ -387,6 +397,7 @@ class AnswerData {
 
   insertGreenLetterAt(letter, index) {
     this.green[index] = letter
+    // this.yellow[index] = null
   }
 
   insertYellowLetterAt(letter, index) {
@@ -428,3 +439,8 @@ class AnswerData {
     return regString
   }
 }
+
+
+
+// no more than 0 or 1 o
+// ^(?!.*o.*o.*).....$
