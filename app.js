@@ -338,6 +338,7 @@ function fillHintTextArea(hintTextarea, wordList) {
   if (wordList.length > 1000) {
     hintTextarea.value += "Too many words to list!\n"
   } else {
+    hintTextarea.value += "Possible words:\n\n"
     for (let word of wordList) {
       hintTextarea.value += word + "\n"
     }
