@@ -91,7 +91,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: darkgray 1px solid;
+    border-bottom: rgb(63, 63, 63) 1px solid;
     margin-bottom: 15px;
     box-sizing: border-box;
   }
