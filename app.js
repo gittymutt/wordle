@@ -318,7 +318,6 @@ function toggleHints() {
     updateHintButton(numWords, true)
   } else {
     updateHintButton(numWords, false)
-
   }
   hintsOpen = !hintsOpen
 
