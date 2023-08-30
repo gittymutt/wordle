@@ -309,15 +309,31 @@ function getPossibleWords(regexStr) {
   return possibleWords 
 }
 
+function closeHints() {
+  const cheatSheet = document.querySelector("#cheat-sheet")
+  cheatSheet.classList.remove("show-hint")
+  
+  // this is repeated in toggleHints. Must make new function.
+  const containerElement = document.getElementsByClassName("container")[0]
+  containerElement.removeEventListener("click", closeHints)
+  const numWords = getPossibleWords(answers.getRegEx()).length
+  updateHintButton(numWords, false)
+  hintsOpen = !hintsOpen
+}
+
 function toggleHints() {
   let cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
+  // this is repeated in toggleHints. Must make new function.
   let numWords = getPossibleWords(answers.getRegEx()).length
   let hintButtonElement = document.querySelector("#hint-button")
+  const containerElement = document.getElementsByClassName("container")[0]
   if (!hintsOpen) {
     updateHintButton(numWords, true)
+    containerElement.addEventListener("click", closeHints) 
   } else {
     updateHintButton(numWords, false)
+    containerElement.removeEventListener("click", closeHints)
   }
   hintsOpen = !hintsOpen
 
