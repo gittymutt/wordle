@@ -283,6 +283,23 @@ body {
     padding: 0px 30px;
   }
 
+#hint-close-button {
+  position: absolute;
+  right: -16px;
+  top: 8px;
+}
+  
+  #hint-close-button svg {
+    /* float: right; */
+    cursor: pointer;
+    height: 30px;
+
+  }
+
+  #hint-close-button svg path {
+    fill: white;
+  }
+
   #cheat-sheet {
     position: absolute;
     display: none;

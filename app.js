@@ -55,6 +55,9 @@ document.querySelector("body").onload = () => {
   hintButtonElement.onclick = toggleHints
   updateHintButton(list.length, false)
 
+  // Hint close button
+  document.getElementById("hint-close-button")
+    .addEventListener("click", closeHints)
   // Play Again Button
   let playAgainButton = document.querySelectorAll(".play-again")
   for (button of playAgainButton) {
