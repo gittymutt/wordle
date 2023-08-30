@@ -334,15 +334,15 @@ function updateHints() {
 }
 
 function fillHintTextArea(hintTextarea, wordList) {
-  hintTextarea.value = ""
-  if (wordList.length > 1000) {
-    hintTextarea.value += "Too many words to list!\n"
-  } else {
-    hintTextarea.value += "Possible words:\n\n"
+  hintTextarea.value = "Possible words:\n\n"
+  if (wordList.length < 1000) {
     for (let word of wordList) {
       hintTextarea.value += word + "\n"
-    }
+    } 
+  } else {
+      hintTextarea.value += "Too many words to list!"
   }
+  
 }
 
 
