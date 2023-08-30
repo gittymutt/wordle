@@ -324,7 +324,7 @@ function closeHints() {
 function toggleHints() {
   let cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
-  // this is repeated in toggleHints. Must make new function.
+  // this is repeated in closeHints. Must make new function.
   let numWords = getPossibleWords(answers.getRegEx()).length
   let hintButtonElement = document.querySelector("#hint-button")
   const containerElement = document.getElementsByClassName("container")[0]
