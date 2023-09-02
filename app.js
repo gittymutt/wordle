@@ -463,8 +463,13 @@ class AnswerData {
         // one of those letters in the word. 
 
 
-        regString += this.gray.join('') 
-        
+        // regString += this.gray.join('') 
+        this.gray.forEach(char => {
+          if (!this.yellow.flat().includes(char)) {
+            console.log(char, this.yellow )
+            regString += char
+          }
+        })
 
         regString += this.yellow[i].join('')
         regString += "]"
