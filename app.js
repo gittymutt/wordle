@@ -411,7 +411,7 @@ class AnswerData {
     this.numCols = paramCols
     this.green =  new Array(numCols),
     this.yellow = Array.from(Array(numCols), () => new Array())
-    this.gray = []    
+    this.gray = Array.from(Array(numCols), () => new Array())
   }
 
   insertGreenLetterAt(letter, index) {
@@ -424,6 +424,13 @@ class AnswerData {
       this.yellow[index].push(letter)
     }
   }
+
+  // insertGrayLetterAt(letter, index) {
+  //   if (this.gray[index].indexOf(letter) === -1) { // insert if not there already
+  //     this.gray[index].push(letter)
+  //   }
+  // }
+
 
   insertGrayLetter(letter) {
     if (this.gray.indexOf(letter) === -1) { // insert if not there already
@@ -441,23 +448,55 @@ class AnswerData {
         }
       }
     }
+
+    let allGrayLetters = []
+    for (let letter of this.gray) {
+      if (allGrayLetters.indexOf(letter) === -1) {
+        allGrayLetters.push(letter)
+      }
+    }
+
     for (let letter of allYellowLetters) {
       regString += `(?=.*${letter})`
     }
+
+    // for (let letter of allGrayLetters) {
+    //   if (!allYellowLetters.includes(letter)) {
+    //   regString += `(?!.*${letter})`
+    //   }
+    // }
+
     for (let i=0;i<numCols;++i) {
       if (this.green[i]) {
         regString += this.green[i]
       } else {
         regString += "[^"
-        regString += this.gray.join('')
+        // Don't omit gray from the whole word if there is a matching yellow.
+        // If the user puts in two of a letter, and one there is only one yellow in the
+        // word of that letter, one of them is gray, meaning there is only 
+        // one of those letters in the word. 
+
+
+        regString += this.gray.join('') // no gray if there is a yellow or green
+        
+
         regString += this.yellow[i].join('')
         regString += "]"
       }
     }
     regString += "$"
+    console.log(regString)
     return regString
   }
 }
+
+// Bug in the Answerdata class
+//
+// Attempt: Seeds
+// Correct Answer: mimes
+//
+// Resulting regex:
+// ^(?=.*E)[^SED][^SEDE][^SED][^SED]S$
 
 
 
