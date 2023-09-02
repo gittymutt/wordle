@@ -416,7 +416,6 @@ class AnswerData {
 
   insertGreenLetterAt(letter, index) {
     this.green[index] = letter
-    // this.yellow[index] = null
   }
 
   insertYellowLetterAt(letter, index) {
@@ -424,13 +423,6 @@ class AnswerData {
       this.yellow[index].push(letter)
     }
   }
-
-  // insertGrayLetterAt(letter, index) {
-  //   if (this.gray[index].indexOf(letter) === -1) { // insert if not there already
-  //     this.gray[index].push(letter)
-  //   }
-  // }
-
 
   insertGrayLetter(letter) {
     if (this.gray.indexOf(letter) === -1) { // insert if not there already
@@ -460,12 +452,6 @@ class AnswerData {
       regString += `(?=.*${letter})`
     }
 
-    // for (let letter of allGrayLetters) {
-    //   if (!allYellowLetters.includes(letter)) {
-    //   regString += `(?!.*${letter})`
-    //   }
-    // }
-
     for (let i=0;i<numCols;++i) {
       if (this.green[i]) {
         regString += this.green[i]
@@ -477,7 +463,7 @@ class AnswerData {
         // one of those letters in the word. 
 
 
-        regString += this.gray.join('') // no gray if there is a yellow or green
+        regString += this.gray.join('') 
         
 
         regString += this.yellow[i].join('')
