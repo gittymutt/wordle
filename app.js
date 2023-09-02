@@ -132,16 +132,21 @@ function checkWord() {
     }
   }
 
-  // Unmatching letters - turn gray
-  tempWord = tempWord.filter((letter) => letter !== null)
-  for (const letter of tempWord) {
-    answers.insertGrayLetter(letter) // for regex search
-    let key = getKey(letter)
-    if (key.classList.contains(GREEN_CLASS)) continue 
-    if (key.classList.contains(YELLOW_CLASS)) continue 
-    key.classList.add(LIGHT_GRAY_CLASS) 
+  // Letters left are not in word - turn gray
+  for (let curCol = 0; curCol < numCols;++curCol) {   
+    let letter = tempWord[curCol]
+    if (letter !== null) {
+      answers.insertGrayLetterAt(letter, curCol) // for regex hint search
+      const squareBack = getSquareBack(curCol, curRow)
+      const key = getKey(letter)
+      if (key.classList.contains(GREEN_CLASS)) continue 
+      if (key.classList.contains(YELLOW_CLASS)) continue 
+      key.classList.add(LIGHT_GRAY_CLASS) 
+    }
   }
 
+
+  
   flipLetters(curRow)
   curRow++
 }
@@ -360,7 +365,6 @@ function fillHintTextArea(hintTextarea, wordList) {
   } else {
       hintTextarea.value += "Too many words to list!"
   }
-  
 }
 
 
@@ -424,11 +428,17 @@ class AnswerData {
     }
   }
 
-  insertGrayLetter(letter) {
-    if (this.gray.indexOf(letter) === -1) { // insert if not there already
-      this.gray.push(letter)
+  insertGrayLetterAt(letter, index) {
+    if (this.gray[index].indexOf(letter) === -1) { // insert if not there already
+      this.gray[index].push(letter)
     }
   }
+
+  // insertGrayLetter(letter) {
+  //   if (this.gray.indexOf(letter) === -1) { // insert if not there already
+  //     this.gray.push(letter)
+  //   }
+  // }
 
   getRegEx() {
     let regString = "^"
@@ -465,8 +475,8 @@ class AnswerData {
 
         // regString += this.gray.join('') 
         this.gray.forEach(char => {
-          if (!this.yellow.flat().includes(char)) {
-            console.log(char, this.yellow )
+          if ( this.gray[i] === char &&
+              !this.yellow.flat().includes(char)) {
             regString += char
           }
         })
