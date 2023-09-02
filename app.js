@@ -15,7 +15,6 @@ const LIGHT_GRAY_CLASS = "light-gray"
 let hintsOpen = false
 let board = document.querySelector(".board")
 
-// let list = dict.filter((w) => w.length === 5)
 let list = dict // save big dictionary in case we want bigger words later
 let secretWord = list[Math.floor(list.length * Math.random())]
 let secretWordElements = document.querySelectorAll(".secret-word")
@@ -401,8 +400,6 @@ let keys = ["q", "w", "e", "r", "t", "y", "u", "i","o","p",
 
 
 
-
-
 // Gathers info about previous answers and creates a regex expression
 // that filters out words that can be eliminated based on the user's
 // previous answers
@@ -433,12 +430,6 @@ class AnswerData {
       this.gray[index].push(letter)
     }
   }
-
-  // insertGrayLetter(letter) {
-  //   if (this.gray.indexOf(letter) === -1) { // insert if not there already
-  //     this.gray.push(letter)
-  //   }
-  // }
 
   getRegEx() {
     let regString = "^"
@@ -471,35 +462,17 @@ class AnswerData {
         // If the user puts in two of a letter, and one there is only one yellow in the
         // word of that letter, one of them is gray, meaning there is only 
         // one of those letters in the word. 
-
-
-        // regString += this.gray.join('') 
         this.gray.forEach(char => {
           if ( this.gray[i] === char &&
               !this.yellow.flat().includes(char)) {
             regString += char
           }
         })
-
         regString += this.yellow[i].join('')
         regString += "]"
       }
     }
     regString += "$"
-    console.log(regString)
     return regString
   }
 }
-
-// Bug in the Answerdata class
-//
-// Attempt: Seeds
-// Correct Answer: mimes
-//
-// Resulting regex:
-// ^(?=.*E)[^SED][^SEDE][^SED][^SED]S$
-
-
-
-// no more than 0 or 1 o
-// ^(?!.*o.*o.*).....$
