@@ -1,6 +1,6 @@
-let numCols = 5
-let numRows = 6
-let words = Array.from(Array(numRows), () => new Array(numCols))
+const numCols = 5
+const numRows = 6
+const words = Array.from(Array(numRows), () => new Array(numCols))
 let curCol = 0
 let curRow = 0
 let gameOver = false
@@ -13,14 +13,14 @@ const DARK_GRAY_CLASS = "dark-gray"
 const LIGHT_GRAY_CLASS = "light-gray"
 
 let hintsOpen = false
-let board = document.querySelector(".board")
+const board = document.querySelector(".board")
 
 let list = dict // save big dictionary in case we want bigger words later
 let secretWord = list[Math.floor(list.length * Math.random())]
-let secretWordElements = document.querySelectorAll(".secret-word")
-let wrongWordElement = document.querySelector(".show-wrong-word")
-let wrongWord = document.querySelector(".wrong-word")
-let keyboard = document.querySelector(".keyboard")
+const secretWordElements = document.querySelectorAll(".secret-word")
+const wrongWordElement = document.querySelector(".show-wrong-word")
+const wrongWord = document.querySelector(".wrong-word")
+const keyboard = document.querySelector(".keyboard")
 let answers
 
 document.querySelector("body").onload = () => {
@@ -32,12 +32,12 @@ document.querySelector("body").onload = () => {
   answers = new AnswerData(numCols)
   
   // Show Instructions
-  let seenDirections = window.localStorage.getItem("seenDirections")
-  let overlay = document.querySelector("#overlay")
+  const seenDirections = window.localStorage.getItem("seenDirections")
+  const overlay = document.querySelector("#overlay")
   if (!window.localStorage.seenDirections) {
-    let closeButton = document.querySelector("#close-button")
-    let instructionSheet = document.querySelector(".instruction-sheet")
-    let letsPlayButton = document.querySelector("#lets-play")
+    const closeButton = document.querySelector("#close-button")
+    const instructionSheet = document.querySelector(".instruction-sheet")
+    const letsPlayButton = document.querySelector("#lets-play")
     closeButton.onclick = () => overlay.style.display = "none"
     letsPlayButton.onclick = () => overlay.style.display = "none"
     instructionSheet.onclick = (e) => e.stopPropagation()
@@ -50,7 +50,7 @@ document.querySelector("body").onload = () => {
   }
 
   // Hint Button
-  let hintButtonElement = document.querySelector("#hint-button")
+  const hintButtonElement = document.querySelector("#hint-button")
   hintButtonElement.onclick = toggleHints
   updateHintButton(list.length, false)
 
@@ -58,14 +58,14 @@ document.querySelector("body").onload = () => {
   document.getElementById("hint-close-button")
     .addEventListener("click", closeHints)
   // Play Again Button
-  let playAgainButton = document.querySelectorAll(".play-again")
+  const playAgainButton = document.querySelectorAll(".play-again")
   for (button of playAgainButton) {
     button.onclick = () => window.location.reload();
   }
 }
 
 function checkWord() {
-  let tempWord = []
+  const tempWord = []
   let tempSecretWord = Array.from(secretWord)
   tempSecretWord = tempSecretWord.map((letter) => letter.toUpperCase())
   for (let i = 0;i<numCols;++i) {
@@ -150,7 +150,7 @@ function checkWord() {
   curRow++
 }
 
-let body = document.getElementsByTagName("body")[0]
+const body = document.getElementsByTagName("body")[0]
 body.onkeydown = (e) => {
   if (gameOver) return 0
   // enter
@@ -212,17 +212,17 @@ function update(words) {
 }
 
 function getSquare(x, y) {
-  let indexNum = y*numCols + x
+  const indexNum = y*numCols + x
   return Array.from(board.children)[indexNum]
 }
 
 function getSquareFront(x, y) {
-  let indexNum = y*numCols + x
+  const indexNum = y*numCols + x
   return Array.from(board.children)[indexNum].firstChild.firstChild
 }
 
 function getSquareBack(x, y) {
-  let indexNum = y*numCols + x
+  const indexNum = y*numCols + x
   return Array.from(board.children)[indexNum].firstChild.lastChild
 }
 
@@ -234,7 +234,7 @@ function getKey(letter) {
 function makeKeyboard() {
   keys = keys.map((key) => key.toUpperCase())
   for (let i=0; i < keys.length; ++i) {
-    let key = document.createElement("button")
+    const key = document.createElement("button")
     key.className = `key-${keys[i]}`
     key.innerText = keys[i]
     key.style.border = "none"
@@ -273,7 +273,7 @@ function flipLetters(rowToFlip) {
 }
 
 function shakeRow() {
-  let timeDelay = 3000
+  const timeDelay = 3000
   
   for (let curCol = 0;curCol < numCols;++curCol) {
     getSquare(curCol, curRow).classList.remove("shake")
@@ -285,19 +285,19 @@ function shakeRow() {
 }
 
 function makeSquares(numCols, numRows) {
-  let board = document.querySelector(".board")
+  const board = document.querySelector(".board")
   let numberOfSquares = numCols * numRows
   for (let i=0;i<numberOfSquares;++i) {
-    let boxContainer = document.createElement('div')
+    const boxContainer = document.createElement('div')
     boxContainer.classList.add('box-container')
-    let innerBoxContainer = document.createElement('div')
+    const innerBoxContainer = document.createElement('div')
     innerBoxContainer.classList.add('inner-box-container')
-    let boxFrontSide = document.createElement('div')
+    const boxFrontSide = document.createElement('div')
     boxFrontSide.classList.add('box-front-side')
-    let boxBackSide = document.createElement('div')
+    const boxBackSide = document.createElement('div')
     boxBackSide.classList.add('box-back-side')
-    let spanFront = document.createElement('span')
-    let spanBack = document.createElement('span')
+    const spanFront = document.createElement('span')
+    const spanBack = document.createElement('span')
 
     boxFrontSide.appendChild(spanFront)
     boxBackSide.appendChild(spanBack)
@@ -310,7 +310,7 @@ function makeSquares(numCols, numRows) {
 
 function getPossibleWords(regexStr) {
   const regex = new RegExp(regexStr);
-  let possibleWords = dict.filter((word) => {
+  const possibleWords = dict.filter((word) => {
     return regex.test(word.toUpperCase())
   })
   return possibleWords 
@@ -329,11 +329,11 @@ function closeHints() {
 }
 
 function toggleHints() {
-  let cheatSheet = document.querySelector("#cheat-sheet")
+  const cheatSheet = document.querySelector("#cheat-sheet")
   cheatSheet.classList.toggle("show-hint")
   // this is repeated in closeHints. Must make new function.
-  let numWords = getPossibleWords(answers.getRegEx()).length
-  let hintButtonElement = document.querySelector("#hint-button")
+  const numWords = getPossibleWords(answers.getRegEx()).length
+  const hintButtonElement = document.querySelector("#hint-button")
   const containerElement = document.getElementsByClassName("container")[0]
   if (!hintsOpen) {
     updateHintButton(numWords, true)
@@ -344,14 +344,14 @@ function toggleHints() {
   }
   hintsOpen = !hintsOpen
 
-  let hintTextarea = document.querySelector("#hint-textarea")
-  let wordList = getPossibleWords(answers.getRegEx())
+  const hintTextarea = document.querySelector("#hint-textarea")
+  const wordList = getPossibleWords(answers.getRegEx())
   fillHintTextArea(hintTextarea, wordList)
 }
 
 function updateHints() {
-  let hintTextarea = document.querySelector("#hint-textarea")
-  let wordList = getPossibleWords(answers.getRegEx())
+  const hintTextarea = document.querySelector("#hint-textarea")
+  const wordList = getPossibleWords(answers.getRegEx())
   fillHintTextArea(hintTextarea, wordList)
 }
 
@@ -372,7 +372,7 @@ function fillHintTextArea(hintTextarea, wordList) {
 //             open - if true, button says open, if false, says closed
 //             if no parameter, stays the same
 function updateHintButton(numWords, open=null) {
-  let hintButtonElement = document.querySelector("#hint-button")
+  const hintButtonElement = document.querySelector("#hint-button")
   let openOrClose
   if (open !== null) {
     if (open) {
@@ -387,7 +387,7 @@ function updateHintButton(numWords, open=null) {
 }
 
 function setDictionaryLink(word) {
-  let dictLink = document.querySelectorAll(".dictionary-link")
+  const dictLink = document.querySelectorAll(".dictionary-link")
   for (link of dictLink) {
     link.setAttribute("href", "https://www.collinsdictionary.com/dictionary/english/" + word);
   }
@@ -433,7 +433,7 @@ class AnswerData {
 
   getRegEx() {
     let regString = "^"
-    let allYellowLetters = []
+    const allYellowLetters = []
     for (let col of this.yellow) {
       for (let letter of col) {
         if (allYellowLetters.indexOf(letter) === -1) {
@@ -442,7 +442,7 @@ class AnswerData {
       }
     }
 
-    let allGrayLetters = []
+    const allGrayLetters = []
     for (let letter of this.gray) {
       if (allGrayLetters.indexOf(letter) === -1) {
         allGrayLetters.push(letter)
