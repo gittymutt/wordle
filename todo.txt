@@ -1,4 +1,4 @@
-Allow for very large desktop screens
+Allow for very large desktop screens *check?*
 Keep track of scores
 Put in dictionary and check words *Check*
 Randomly choose a word each time *Check*
