@@ -258,6 +258,17 @@ function makeKeyboard() {
         backSpacePressed()
       }
     }
+
+    // Skew the middle row to the right
+    for (let i=10;i<19;++i){
+      const keyElement = document.getElementsByClassName(`key-${keys[i]}`)[0]
+      if (keyElement) {
+        keyElement.style.position = "relative"
+        keyElement.style.left = "28px"
+        console.log(keyElement.style.backgroundColor)
+      }
+    }
+
     keyboard.appendChild(key)
   }
 }
