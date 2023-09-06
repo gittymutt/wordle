@@ -264,7 +264,7 @@ function makeKeyboard() {
       const keyElement = document.getElementsByClassName(`key-${keys[i]}`)[0]
       if (keyElement) {
         keyElement.style.position = "relative"
-        keyElement.style.left = "28px"
+        keyElement.style.left = "14px"
         console.log(keyElement.style.backgroundColor)
       }
     }
